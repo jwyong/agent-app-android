@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="data"
+            type="sg.com.agentapp.agent_talk.chat_room.ChatRoom" />
+    </data>
+
+    <RelativeLayout
+        android:id="@+id/relativeChat"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!--Toolbar-->
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:background="@drawable/xml_gradient_bg_g3"
+            android:theme="@style/toolbarBackBtnBlack"
+            app:contentInsetLeft="0dp"
+            app:contentInsetStart="0dp"
+            app:contentInsetStartWithNavigation="0dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/user_profile"
+                    android:layout_width="40dp"
+                    android:layout_height="match_parent"
+                    android:proPic="@{data.profilePicUrl}"
+                    android:visibility="@{data.itemSelected > 0 ? View.GONE : View.VISIBLE}"
+                    tools:src="@drawable/ic_profile_def_200px" />
+
+                <TextView
+                    android:id="@+id/user_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_toStartOf="@id/ll_default"
+                    android:layout_toEndOf="@id/user_profile"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/roboto_medium"
+                    android:gravity="center_vertical"
+                    android:maxLines="1"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:text="@{data.name}"
+                    android:textColor="@color/black"
+                    android:visibility="@{data.itemSelected > 0? View.GONE : View.VISIBLE}"
+                    tools:text="Display Name" />
+
+                <!--normal items-->
+                <LinearLayout
+                    android:id="@+id/ll_default"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentEnd="true"
+                    android:orientation="horizontal"
+                    android:visibility="@{data.itemSelected > 0? View.GONE : View.VISIBLE}">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="match_parent"
+                        android:onClick="@{data::createViewReq}"
+                        android:padding="6dp"
+                        android:src="@drawable/ic_calendar_black_200px" />
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="match_parent"
+                        android:onClick="@{data::callAgent}"
+                        android:padding="5dp"
+                        android:src="@drawable/ic_phone_black_200px" />
+
+                </LinearLayout>
+
+                <!--longclick items (hidden)-->
+                <LinearLayout
+                    android:id="@+id/ll_reply"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentEnd="true"
+                    android:orientation="horizontal"
+                    android:visibility="@{data.itemSelected > 0 ? View.VISIBLE : View.GONE}"
+                    tools:visibility="gone">
+
+                    <!--reply btn-->
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="match_parent"
+                        android:onClick="@{data::replyBtnOnClick}"
+                        android:padding="6dp"
+                        android:src="@drawable/ic_forward_arrow_black_200px"
+                        android:visibility="@{data.showReplyBtn ? View.VISIBLE: View.GONE}"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/delete_btn"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <!--delete btn-->
+                    <ImageView
+                        android:id="@+id/delete_btn"
+                        android:layout_width="30dp"
+                        android:layout_height="match_parent"
+                        android:onClick="@{data::deleteBtnOnClick}"
+                        android:padding="6dp"
+                        android:src="@drawable/ic_dustbin_200px"
+                        android:visibility="@{data.showDeleteBtn ? View.VISIBLE: View.GONE}"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/copy_btn"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <!--copy btn-->
+                    <ImageView
+                        android:id="@+id/copy_btn"
+                        android:layout_width="30dp"
+                        android:layout_height="match_parent"
+                        android:onClick="@{data::copyBtnOnClick}"
+                        android:padding="6dp"
+                        android:src="@drawable/ic_copy_black_200px"
+                        android:visibility="@{data.showCopyBtn ? View.VISIBLE: View.GONE}"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/flag_btn"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <!-- flag btn -->
+                    <ImageView
+                        android:id="@+id/flag_btn"
+                        android:layout_width="30dp"
+                        android:layout_height="match_parent"
+                        android:onClick="@{data::flagBtnOnClick}"
+                        android:padding="8dp"
+                        android:src="@{data.showFlagBtn == 1? @drawable/ic_flag_200px : @drawable/ic_cancel_grey_100px}"
+                        android:visibility="@{data.showFlagBtn == -1 ? View.GONE : View.VISIBLE}"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/forward_btn"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:src="@drawable/ic_flag_200px" />
+
+                    <!--forward btn-->
+                    <ImageView
+                        android:id="@+id/forward_btn"
+                        android:layout_width="30dp"
+                        android:layout_height="match_parent"
+                        android:onClick="@{data::forwardBtn}"
+                        android:padding="7dp"
+                        android:src="@drawable/ic_back_arrow_200px"
+                        android:visibility="@{data.showForwardBtn ? View.VISIBLE: View.GONE}"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <!--chat body-->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/chat_room_rv"
+            android:layout_width="match_parent"
+            android:overScrollMode="never"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/msg_bar_main"
+            android:layout_below="@id/toolbar"
+            android:background="@color/white"
+            android:orientation="vertical"
+            tools:listitem="@layout/chat_out_msg" />
+
+        <!--reply UI-->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/reply_msg_cl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/msg_bar_main"
+            android:layout_marginTop="10dp"
+            android:background="@color/grey2"
+            android:visibility="@{data.showReplyUI ? View.VISIBLE : View.GONE}"
+            tools:visibility="visible">
+
+            <!--close btn-->
+            <ImageView
+                android:id="@+id/reply_close_btn"
+                android:layout_width="50dp"
+                android:layout_height="30dp"
+                android:onClick="@{data::closeReplyUI}"
+                android:src="@drawable/ic_cross_red"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!--reply CRDisplayName-->
+            <TextView
+                android:id="@+id/chattab_display_reply_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:paddingStart="10dp"
+                android:singleLine="true"
+                android:text="@{data.replyMsgName}"
+                android:textColor="@color/primaryDark4"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="DisplayName" />
+
+            <!--reply media thumb-->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/reply_media_cv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="1dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/reply_close_btn"
+                app:layout_constraintStart_toEndOf="@id/chattab_text_reply_msg"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/reply_media"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:imgPathOnly="@{data.replyMsgImgThumb}"
+                    android:visibility="@{data.replyMsgImgThumb != null ? View.VISIBLE : View.GONE}"
+                    tools:src="@drawable/default_img_400"
+                    tools:visibility="visible" />
+            </androidx.cardview.widget.CardView>
+
+            <!--reply text msg-->
+            <TextView
+                android:id="@+id/chattab_text_reply_msg"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="5dp"
+                android:ellipsize="end"
+                android:maxLines="3"
+                android:singleLine="false"
+                android:text="@{data.replyMsgBody}"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/reply_media_cv"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/chattab_display_reply_name"
+                tools:text="reply text msg" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!--input btm bar-->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/msg_bar_main"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@color/white">
+
+            <!--emoji btn-->
+            <ImageView
+                android:id="@+id/emoji_btn_indi"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:onClick="@{data::emojiBtn}"
+                android:padding="10dp"
+                android:src="@drawable/ic_emoji_black_200px"
+                android:tint="@color/grey9"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/msg_bar_type"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!--input text bottom bar-->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/msg_bar_type"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/xml_roundcorner_grey1_30dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/msg_send"
+                app:layout_constraintStart_toEndOf="@id/emoji_btn_indi"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1">
+
+                <!--emoji btn-->
+
+                <!--<ImageView-->
+                <!--android:id="@+id/emoji_btn_indi"-->
+                <!--android:layout_width="40dp"-->
+                <!--android:layout_height="40dp"-->
+                <!--android:onClick="@{data::emojiBtn}"-->
+                <!--android:paddingStart="10dp"-->
+                <!--android:paddingTop="10dp"-->
+                <!--android:paddingBottom="10dp"-->
+                <!--android:src="@drawable/ic_add_black_200px"-->
+                <!--android:tint="@color/grey9"-->
+                <!--android:visibility="visible"-->
+                <!--app:layout_constraintBottom_toBottomOf="@id/msg_input"-->
+                <!--app:layout_constraintStart_toStartOf="parent"-->
+                <!--app:layout_constraintTop_toTopOf="@id/msg_input" />-->
+                <!--android:onClick="@{data::emojiBtn}"-->
+
+                <!--text input field-->
+                <androidx.emoji.widget.EmojiEditText
+                    android:id="@+id/msg_input"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:addTextChangedListener="@{data.watcher}"
+                    android:background="@null"
+                    android:hint="@string/input_text"
+                    android:inputType="textCapSentences|textMultiLine"
+                    android:maxLines="4"
+                    android:minHeight="45dp"
+                    android:padding="10dp"
+                    android:scrollbars="vertical"
+                    android:scrollHorizontally="false"
+                    android:textSize="14sp"
+                    android:visibility="@{data.isRecording ? View.INVISIBLE : View.VISIBLE}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/msg_plus"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:visibility="visible" />
+
+                <!--record audio bar-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="@{data.isRecording ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:visibility="gone">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="15dp"
+                        android:text="@{data.recordingTimer}"
+                        tools:text="00:00" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="15dp"
+                        android:text="@string/swipe_cancel" />
+                </LinearLayout>
+
+                <!--attach files btn-->
+                <ImageView
+                    android:id="@+id/msg_plus"
+                    android:layout_width="30dp"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="5dp"
+                    android:onClick="@{data::attachBtn}"
+                    android:padding="5dp"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:src="@drawable/ic_doc_black_200px"
+                    android:tint="@color/grey9"
+                    android:visibility="@{data.isRecording ? View.GONE : View.VISIBLE}"
+                    app:layout_constraintBottom_toBottomOf="@id/msg_input"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/msg_input" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!--guidelines for send btn-->
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guidelineVerSend"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.8978102" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_end="22.5dp" />
+
+            <!--send button-->
+            <ImageButton
+                android:id="@+id/msg_send"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:background="@drawable/xml_round_bg_grey2"
+                android:onClick="@{data::sendMsg}"
+                android:src="@drawable/ic_play_button_black"
+                android:visibility="@{data.inputTextLength > 0 ? View.VISIBLE : View.INVISIBLE}"
+                app:layout_constraintBottom_toBottomOf="@id/msg_bar_type"
+                app:layout_constraintEnd_toEndOf="@id/guidelineVerSend"
+                app:layout_constraintStart_toStartOf="@id/guidelineVerSend"
+                app:layout_constraintTop_toTopOf="@id/msg_bar_type"
+                app:layout_constraintVertical_bias="1"
+                tools:visibility="invisible" />
+
+            <!--record audio btn-->
+            <ImageButton
+                android:id="@+id/audio_record"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:background="@{data.isRecording? @drawable/xml_round_bg_pl3 : @drawable/xml_round_bg_grey2}"
+                android:src="@drawable/ic_chatlog_voice_note_grey"
+                android:visibility="@{data.inputTextLength > 0 ? View.GONE : View.VISIBLE}"
+                app:layout_constraintBottom_toBottomOf="@id/msg_bar_type"
+                app:layout_constraintEnd_toEndOf="@id/guidelineVerSend"
+                app:layout_constraintStart_toStartOf="@id/guidelineVerSend"
+                app:layout_constraintTop_toTopOf="@id/msg_bar_type"
+                app:layout_constraintVertical_bias="1"
+                tools:background="@drawable/xml_round_bg_grey2"
+                tools:src="@drawable/ic_chatlog_voice_note_grey"
+                tools:visibility="visible" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </RelativeLayout>
+</layout>

@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="var"
+            type="sg.com.agentapp.sql.entity.Message" />
+
+        <!-- chatroom -->
+        <variable
+            name="chatroom"
+            type="sg.com.agentapp.agent_talk.chat_room.ChatRoom" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_chatroom_selection">
+
+        <!--guideline-->
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_ver_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.85" />
+
+        <!--chat bubble-->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/chat_bubble"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/chat_bubble_in"
+            android:padding="8dp"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tv_time"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <!--reply background-->
+            <View
+                android:id="@+id/reply_bg"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/xml_roundcorner_grey3_10dp"
+                android:backgroundTint="@color/grey3"
+                app:layout_constraintBottom_toBottomOf="@id/tv_reply_msg"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/user_name" />
+
+            <!--display name-->
+            <TextView
+                android:id="@+id/user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:paddingStart="8dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="8dp"
+                android:singleLine="true"
+                android:text="@{var.msgReplyJid.equals(chatroom.jid) ? chatroom.name : `You`}"
+                android:textAlignment="textStart"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Display Name" />
+
+            <!--reply body-->
+            <TextView
+                android:id="@+id/tv_reply_msg"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:paddingBottom="5dp"
+                android:text="@{var.msgReplyData}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/user_name"
+                tools:text="reply message" />
+
+            <!--text msg-->
+            <TextView
+                android:id="@+id/tv_text_msg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="8dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="8dp"
+                android:paddingBottom="5dp"
+                android:text="@{var.msgData}"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_reply_msg"
+                tools:text="message body" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!--time-->
+        <TextView
+            android:id="@+id/tv_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="5dp"
+            android:text="@{var.getFormattedDate(var.msgDate)}"
+            android:textSize="10sp"
+            app:layout_constraintBottom_toBottomOf="@id/chat_bubble"
+            app:layout_constraintEnd_toEndOf="@id/gl_ver_1"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toEndOf="@id/chat_bubble"
+            app:layout_constraintTop_toBottomOf="@id/chat_bubble"
+            tools:text="2:15pm" />
+
+        <!--flag-->
+        <ImageView
+            android:id="@+id/flag_icon"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginBottom="3dp"
+            android:src="@drawable/ic_flag_200px"
+            android:tint="@color/red"
+            android:visibility="@{var.msgFlagDate > 0 ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toTopOf="@id/tv_time"
+            app:layout_constraintEnd_toEndOf="@id/tv_time"
+            app:layout_constraintStart_toStartOf="@id/tv_time"
+            tools:visibility="gone" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

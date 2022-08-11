@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="data"
+            type="sg.com.agentapp.appt_tab.appt_tab.AppointmentMain" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/drawer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <sg.com.agentapp.global.collapse_cal.widget.CollapsibleCalendar
+            android:id="@+id/calendarView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:buttonLeft_drawableTintColor="@color/grey10"
+            app:buttonRight_drawableTintColor="@color/grey10"
+            app:expandIconColor="@color/grey10"
+            app:layout_constraintTop_toTopOf="parent"
+            app:primaryColor="@color/grey2"
+            app:selectedItem_background="@drawable/bg_cal_selection"
+            app:selectedItem_textColor="@color/black"
+            app:textColor="@color/grey10"
+            app:todayItem_background="@drawable/bg_cal_today"
+            app:todayItem_textColor="@color/grey10">
+
+        </sg.com.agentapp.global.collapse_cal.widget.CollapsibleCalendar>
+
+        <!--fragment-->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="10dp"
+            app:layout_constraintBottom_toTopOf="@id/rl_bottom"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/calendarView" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/rl_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <CheckBox
+                android:id="@+id/cb_confirmed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:autoSizeTextType="uniform"
+                android:checked="@={data.obsConfApptChecked}"
+                app:layout_constraintBottom_toTopOf="@id/appt_list"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_confirmed"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:maxLines="2"
+                android:onClick="@{data::confirmedTextOnclick}"
+                android:text="Confirmed Appointment"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="@id/cb_confirmed"
+                app:layout_constraintEnd_toStartOf="@id/cb_pending"
+                app:layout_constraintStart_toEndOf="@id/cb_confirmed"
+                app:layout_constraintTop_toTopOf="@id/cb_confirmed" />
+
+            <CheckBox
+                android:id="@+id/cb_pending"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:checked="@={data.obsPendApptChecked}"
+                app:layout_constraintBottom_toTopOf="@id/add_btn"
+                app:layout_constraintEnd_toStartOf="@id/tv_pending"
+                app:layout_constraintStart_toEndOf="@id/tv_confirmed" />
+
+            <TextView
+                android:id="@+id/tv_pending"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:maxLines="2"
+                android:onClick="@{data::pendingTextOnclick}"
+                android:text="Pending Appointment"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="@id/cb_pending"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/cb_pending"
+                app:layout_constraintTop_toTopOf="@id/cb_pending" />
+
+            <ImageView
+                android:id="@+id/appt_list"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="5dp"
+                android:onClick="@{data::resetOnClick}"
+                android:src="@drawable/ic_tnp_200px"
+                android:tint="@color/black"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <ImageView
+                android:id="@+id/add_btn"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="5dp"
+                android:onClick="@{data::createNewVR}"
+                android:src="@drawable/ic_add_btn"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

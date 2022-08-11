@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="chatroom"
+            type="sg.com.agentapp.agent_talk.chat_room.ChatRoom" />
+
+        <variable
+            name="data"
+            type="sg.com.agentapp.sql.entity.Message" />
+
+        <variable
+            name="oldDateTimeLong"
+            type="Long" />
+
+        <variable
+            name="newDateTimeLong"
+            type="Long" />
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_chatroom_selection"
+        android:paddingStart="5dp"
+        android:paddingTop="10dp"
+        android:paddingEnd="5dp"
+        android:paddingBottom="10dp">
+
+        <!--chat bubble-->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/tv_text_msg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:background="@drawable/chat_bubble_in"
+            android:backgroundTint="@color/yellow"
+            android:paddingStart="15dp"
+            android:paddingTop="10dp"
+            android:paddingEnd="15dp"
+            android:paddingBottom="10dp"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintEnd_toStartOf="@id/tv_time"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <!--old date/time-->
+            <TextView
+                android:id="@+id/tv_old_date"
+                style="@style/appt_update_date_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:text="@{data.getDateStrFromLong(oldDateTimeLong)}"
+                app:layout_constrainedWidth="true"
+                app:layout_constraintEnd_toStartOf="@id/iv_arrow"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="27 Aug (Mon)" />
+
+            <TextView
+                android:id="@+id/tv_old_time"
+                style="@style/appt_update_time_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{data.getTimeStrFromLong(oldDateTimeLong)}"
+                app:layout_constraintEnd_toEndOf="@id/tv_old_date"
+                app:layout_constraintStart_toStartOf="@id/tv_old_date"
+                app:layout_constraintTop_toBottomOf="@id/tv_old_date"
+                tools:text="4:20pm" />
+
+            <!--arrow-->
+            <ImageView
+                android:id="@+id/iv_arrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_right_arrow"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_new_date"
+                style="@style/appt_update_date_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="@{data.getDateStrFromLong(newDateTimeLong)}"
+                app:layout_constrainedWidth="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/iv_arrow"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="27 Aug (Mon)" />
+
+            <TextView
+                android:id="@+id/tv_new_time"
+                style="@style/appt_update_time_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{data.getTimeStrFromLong(newDateTimeLong)}"
+                app:layout_constraintEnd_toEndOf="@id/tv_new_date"
+                app:layout_constraintStart_toStartOf="@id/tv_new_date"
+                app:layout_constraintTop_toBottomOf="@id/tv_new_date"
+                tools:text="4:20pm" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!--time-->
+        <TextView
+            android:id="@+id/tv_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:text="@{data.getFormattedDate(data.msgDate)}"
+            android:textColor="@color/grey9"
+            android:textSize="10sp"
+            app:layout_constraintBottom_toBottomOf="@id/tv_text_msg"
+            app:layout_constraintEnd_toStartOf="@id/gl_v1"
+            app:layout_constraintStart_toEndOf="@id/tv_text_msg"
+            app:layout_constraintTop_toBottomOf="@id/tv_text_msg"
+            tools:text="2:15pm" />
+
+        <!--vertical guideline-->
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_v1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.75" />
+
+        <!--update msg-->
+        <TextView
+            android:id="@+id/tv_update_msg"
+            style="@style/appt_update_msg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{chatroom.name + ` has changed the time from`}"
+            app:layout_constraintTop_toBottomOf="@id/tv_time"
+            tools:text="Aaron Ang has changed the time from" />
+
+        <TextView
+            style="@style/appt_update_msg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{data.getDateTime(oldDateTimeLong) + ` to ` + data.getDateTime(newDateTimeLong)}"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/tv_update_msg"
+            tools:text="27 Aug (Thu) 1:20pm to 27 Aug (Thu) 2:20pm" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

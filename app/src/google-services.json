@@ -1,0 +1,99 @@
+{
+  "project_info": {
+    "project_number": "894560655304",
+    "firebase_url": "https://agentapp-f9ec0.firebaseio.com",
+    "project_id": "agentapp-f9ec0",
+    "storage_bucket": "agentapp-f9ec0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:894560655304:android:309e00ed56f47806",
+        "android_client_info": {
+          "package_name": "sg.com.agentapp.debug"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "894560655304-l871qf7jt0qo2raf36nh54din3voip3s.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "sg.com.agentapp.debug",
+            "certificate_hash": "4e391b21893dff2037eee77ac79f9fdf5920c01e"
+          }
+        },
+        {
+          "client_id": "894560655304-cm0gdc2rtuqimbhb63ml87qofcs41pqm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDCJH9Ec6XlB9nj-G-SEB5CKtax11NLC2s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "894560655304-cm0gdc2rtuqimbhb63ml87qofcs41pqm.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "894560655304-9los461nk9egvd78m1oa80sn5r3mqpau.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "Soapp.AgentApp.com"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:894560655304:android:309e00ed56f47806",
+        "android_client_info": {
+          "package_name": "sg.com.agentapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "894560655304-l871qf7jt0qo2raf36nh54din3voip3s.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "sg.com.agentapp",
+            "certificate_hash": "4e391b21893dff2037eee77ac79f9fdf5920c01e"
+          }
+        },
+        {
+          "client_id": "894560655304-cm0gdc2rtuqimbhb63ml87qofcs41pqm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDCJH9Ec6XlB9nj-G-SEB5CKtax11NLC2s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "894560655304-cm0gdc2rtuqimbhb63ml87qofcs41pqm.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "894560655304-9los461nk9egvd78m1oa80sn5r3mqpau.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "Soapp.AgentApp.com"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

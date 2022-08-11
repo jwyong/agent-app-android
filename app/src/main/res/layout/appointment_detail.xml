@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="data"
+            type="sg.com.agentapp.appt_tab.appt_room.AppointmentDetails"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@{data.getToolbarBgFromStatus(data.data.appt.apptStatus)}"
+            android:theme="@style/toolbarBackBtnBlack"
+            app:layout_constraintTop_toTopOf="parent"
+            app:title="@{data.data.appt.apptSubject.trim().isEmpty? data.data.appt.apptLocationName : data.data.appt.apptSubject}"
+            tools:background="@drawable/bg_grad_diag_green"
+            tools:title="Blk 236 Tampines St 21"/>
+
+        <!--date and time-->
+        <TextView
+            android:id="@+id/tv_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:paddingStart="20dp"
+            android:paddingTop="5dp"
+            android:paddingEnd="20dp"
+            android:paddingBottom="5dp"
+            android:text="@{data.getDateTime(data.data.appt.apptDateTime)}"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar"
+            tools:text="28 Feb (Thu) | 7:33PM"/>
+
+        <!--agent name--><TextView
+        android:id="@+id/tv_agentnameLabel"
+        style="@style/field_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="Agent : "
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_date"/>
+
+        <TextView
+            android:id="@+id/tv_agentname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="3"
+            android:paddingEnd="5dp"
+            android:text="@{data.data.cr.size() > 0 ? data.data.cr.get(0).CRName : `AgentName`}"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintEnd_toStartOf="@id/action_btns"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toEndOf="@id/tv_agentnameLabel"
+            app:layout_constraintTop_toTopOf="@id/tv_agentnameLabel"
+            tools:text="JOAH FHDK SLKJDFS ASHAKJL DSFIOSDFJ ASDKLJASDJLKDF ASDKLJASD SDFLKJDSF SDFLKJSDF SDFLKJ"/>
+
+        <!--call btns-->
+        <LinearLayout
+            android:id="@+id/action_btns"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_agentname">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                android:src="@drawable/ic_logo_test"/>
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:onClick="@{data::callAgent}"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                android:src="@drawable/ic_bg_phone"/>
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:onClick="@{data::sendTextMsg}"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                android:src="@drawable/ic_bg_chat"/>
+
+        </LinearLayout>
+
+        <!--type--><TextView
+        android:id="@+id/tv_typeLabel"
+        style="@style/field_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Type : "
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_agentname"/>
+
+        <TextView
+            android:id="@+id/tv_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{data.data.appt.apptAppointmentType}"
+            android:textAllCaps="true"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@id/tv_typeLabel"
+            app:layout_constraintStart_toEndOf="@id/tv_typeLabel"
+            app:layout_constraintTop_toTopOf="@id/tv_typeLabel"
+            tools:text="SALE"/>
+
+        <!--room type--><TextView
+        android:id="@+id/tv_room_type_Label"
+        style="@style/field_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Room Type : "
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_typeLabel"/>
+
+        <TextView
+            android:id="@+id/tv_room_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{data.data.appt.apptRoomType}"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@id/tv_room_type_Label"
+            app:layout_constraintStart_toEndOf="@id/tv_room_type_Label"
+            app:layout_constraintTop_toTopOf="@id/tv_room_type_Label"
+            tools:text="3-room flat"/>
+
+        <!--note--><TextView
+        android:id="@+id/tv_note_label"
+        style="@style/field_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Notes : "
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_room_type_Label"/>
+
+        <TextView
+            android:id="@+id/tv_note"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="5"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
+            android:text="@{data.data.appt.apptNotes}"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toEndOf="@id/tv_note_label"
+            app:layout_constraintTop_toTopOf="@id/tv_note_label"
+            tools:text="buyer agent not coming"/>
+
+        <!--reminder--><TextView
+        android:id="@+id/tv_reminder_label"
+        style="@style/field_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Reminder : "
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_note"/>
+
+        <Spinner
+            android:id="@+id/sp_reminder"
+            style="@style/spinnerMain"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:entries="@array/reminder_time"
+            android:onItemSelected="@{(parent,view,pos,id)-> data.onReminderSpinnerSelect(parent,view,pos,id)}"
+            android:spinnerMode="dropdown"
+            app:layout_constraintBottom_toBottomOf="@id/tv_reminder_label"
+            app:layout_constraintLeft_toRightOf="@id/tv_reminder_label"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_reminder_label"/>
+
+        <!--location--><TextView
+        android:id="@+id/tv_loc_name_label"
+        style="@style/field_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Location : "
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sp_reminder"/>
+
+        <TextView
+            android:id="@+id/tv_loc_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="@{data.data.appt.apptLocationName}"
+            android:textSize="16sp"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintEnd_toStartOf="@id/iv_navi"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toEndOf="@id/tv_loc_name_label"
+            app:layout_constraintTop_toBottomOf="@id/sp_reminder"
+            tools:text="Blk 236 Tampines St 21"/>
+
+        <!--navigate btn-->
+        <ImageView
+            android:id="@+id/iv_navi"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="10dp"
+            android:onClick="@{data::navigate}"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
+            android:src="@drawable/ic_map_black_200px"
+            app:layout_constraintBottom_toBottomOf="@id/tv_loc_name_label"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1"
+            app:layout_constraintTop_toTopOf="@id/tv_loc_name_label"/>
+
+        <!--change-->
+        <Button
+            android:id="@+id/btn_change"
+            style="@style/normalBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:backgroundTint="@color/coco"
+            android:onClick="@{data::btnOnclick}"
+            android:text="@{data.assignBtnTextViews(data.data.appt.getIsHost(), 1)}"
+            app:layout_constraintBottom_toTopOf="@id/btn_save"
+            app:layout_constraintEnd_toStartOf="@id/btn_cancel"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="@string/change"/>
+
+        <!--cancel viewing-->
+        <Button
+            android:id="@+id/btn_cancel"
+            style="@style/normalBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="15dp"
+            android:onClick="@{data::btnOnclick}"
+            android:text="@{data.assignBtnTextViews(data.data.appt.getIsHost(), 2)}"
+            app:layout_constraintBottom_toTopOf="@id/btn_save"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/btn_change"
+            tools:text="@string/cancel_viewing"/>
+
+        <!--save-->
+        <Button
+            android:id="@+id/btn_save"
+            style="@style/normalBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:backgroundTint="@color/orange"
+            android:onClick="@{data::btnOnclick}"
+            android:text="@{data.assignBtnTextViews(data.data.appt.getIsHost(), 3)}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="@string/save"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

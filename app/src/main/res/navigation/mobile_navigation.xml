@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/registrationMainJV">
+
+    <activity
+        android:id="@+id/registrationMainJV"
+        android:name="sg.com.agentapp.registration.RegistrationMainJV"
+        android:label="register_phone_number"
+        tools:layout="@layout/register_phone_number" />
+</navigation>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!--toolbar icon size override-->
+    <dimen name="design_navigation_icon_size" tools:override="true">10dp</dimen>
+
+    <!-- title bar -->
+    <dimen name="title_bar_button_width">36dp</dimen>
+    <dimen name="title_bar_button_height">36dp</dimen>
+
+    <!-- day -->
+    <dimen name="day_circle_width">24dp</dimen>
+    <dimen name="day_circle_height">24dp</dimen>
+    <dimen name="day_circle_radius">120dp</dimen>
+    <dimen name="day_circle_stroke_width">2dp</dimen>
+
+    <!--radio btn-->
+    <dimen name="radio_btn_padding_verti">10dp</dimen>
+    <dimen name="radio_btn_padding_hori">20dp</dimen>
+
+    <!--normal btn-->
+    <dimen name="normal_btn_padding_verti">0dp</dimen>
+    <dimen name="normal_btn_padding_hori">25dp</dimen>
+
+    <!--dialog-->
+    <dimen name="dialog_padding_hori">20dp</dimen>
+    <dimen name="dialog_padding_verti">15dp</dimen>
+
+    <!--MyProfile-->
+    <dimen name="my_profile_form_mar_top">5dp</dimen>
+
+</resources>

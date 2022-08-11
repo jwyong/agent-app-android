@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="sg.com.agentapp.appt_tab.appt_room.AppointmentChange" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:bind="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@{vm.getToolbarBgFromStatus(vm.data.appt.apptStatus)}"
+            android:theme="@style/toolbarBackBtnBlack"
+            app:layout_constraintTop_toTopOf="parent"
+            app:title="@{vm.data.appt.apptSubject.trim().isEmpty? vm.data.appt.apptLocationName : vm.data.appt.apptSubject}"
+            tools:background="@drawable/bg_grad_diag_green"
+            tools:title="Blk 236 Tampines St 21" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            app:layout_constrainedHeight="true"
+            app:layout_constraintBottom_toTopOf="@id/btn_change"
+            app:layout_constraintTop_toBottomOf="@id/toolbar"
+            app:layout_constraintVertical_bias="0">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/edt_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/bg_round_corner_5dp"
+                    android:backgroundTint="@color/grey3"
+                    android:editable="false"
+                    android:focusable="false"
+                    android:inputType="none"
+                    android:onClick="@{vm::showCalendar}"
+                    android:paddingStart="20dp"
+                    android:paddingTop="5dp"
+                    android:paddingEnd="20dp"
+                    android:paddingBottom="5dp"
+                    android:text="@{vm.getDateTime()}"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="28 Feb (Thu) | 7:33PM" />
+
+                <!--agent name-->
+                <TextView
+                    android:id="@+id/tv_agentnameLabel"
+                    style="@style/field_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="Agent's Name : "
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/edt_date" />
+
+                <TextView
+                    android:id="@+id/edttxt_agentname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:text="@{vm.data.cr.get(0).CRName}"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_agentnameLabel"
+                    app:layout_constraintStart_toEndOf="@id/tv_agentnameLabel"
+                    app:layout_constraintTop_toTopOf="@id/tv_agentnameLabel"
+                    tools:text="John Pang" />
+
+                <!--type-->
+                <TextView
+                    android:id="@+id/tv_typeLabel"
+                    style="@style/field_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Type : "
+                    app:layout_constraintBottom_toBottomOf="@id/type_radioGroup"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/type_radioGroup" />
+
+                <LinearLayout
+                    android:id="@+id/type_radioGroup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:paddingStart="5dp"
+                    android:paddingEnd="5dp"
+                    app:layout_constrainedWidth="true"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1"
+                    app:layout_constraintStart_toEndOf="@id/tv_typeLabel"
+                    app:layout_constraintTop_toBottomOf="@id/edttxt_agentname">
+
+                    <include
+                        layout="@layout/incl_radio_btn"
+                        bind:btnOnClick="@{vm.data.appt.apptStatus == 1 ? null : vm::typeBtnsOnClick}"
+                        bind:btnText="@{@string/appt_radio_btn_sale}"
+                        bind:needCapsAll="@{true}"
+                        bind:obsSelectedBtnText="@{vm.obsSelectedBtnText}" />
+
+                    <include
+                        layout="@layout/incl_radio_btn"
+                        bind:btnOnClick="@{vm.data.appt.apptStatus == 1 ? null : vm::typeBtnsOnClick}"
+                        bind:btnText="@{@string/appt_radio_btn_rent}"
+                        bind:needCapsAll="@{true}"
+                        bind:obsSelectedBtnText="@{vm.obsSelectedBtnText}" />
+
+                    <include
+                        layout="@layout/incl_radio_btn"
+                        bind:btnOnClick="@{vm.data.appt.apptStatus == 1 ? null : vm::typeBtnsOnClick}"
+                        bind:btnText="@{@string/appt_radio_btn_room}"
+                        bind:needCapsAll="@{true}"
+                        bind:obsSelectedBtnText="@{vm.obsSelectedBtnText}" />
+
+                </LinearLayout>
+
+                <!--room type-->
+                <TextView
+                    android:id="@+id/tv_room_type_Label"
+                    style="@style/field_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="Room Type : "
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/type_radioGroup" />
+
+                <Spinner
+                    android:id="@+id/sp_room"
+                    style="@style/spinnerMain"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/appt_roomtype"
+                    android:onItemSelected="@{(parent,view,pos,id)-> vm.onRoomTypeSpinnerSelect(parent,view,pos,id)}"
+                    android:spinnerMode="dropdown"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_room_type_Label"
+                    app:layout_constraintLeft_toRightOf="@id/tv_room_type_Label"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/tv_room_type_Label" />
+
+                <!--notes-->
+                <TextView
+                    android:id="@+id/tv_note_label"
+                    style="@style/field_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Notes : "
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/sp_room" />
+
+                <EditText
+                    android:id="@+id/et_note"
+                    style="@style/formFieldsGrey"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="top"
+                    android:maxLines="10"
+                    android:minLines="5"
+                    android:text="@{vm.data.appt.apptNotes}"
+                    android:textColor="@color/black"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/tv_note_label"
+                    app:layout_constraintTop_toBottomOf="@id/sp_room"
+                    tools:text="buyer agent not coming" />
+
+                <!--reminder-->
+                <TextView
+                    android:id="@+id/tv_reminder_label"
+                    style="@style/field_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="Reminder : "
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/et_note" />
+
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:id="@+id/sp_reminder"
+                    style="@style/spinnerMain"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:entries="@array/reminder_time"
+                    android:onItemSelected="@{(parent,view,pos,id)-> vm.onReminderSpinnerSelect(parent,view,pos,id)}"
+                    android:spinnerMode="dropdown"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_reminder_label"
+                    app:layout_constraintLeft_toRightOf="@id/tv_reminder_label"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/tv_reminder_label" />
+
+                <!--location-->
+                <TextView
+                    android:id="@+id/tv_loc_name_label"
+                    style="@style/field_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Location : "
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/sp_reminder" />
+
+                <TextView
+                    android:id="@+id/tv_loc_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="@{vm.data.appt.apptLocationName}"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toEndOf="@id/tv_loc_name_label"
+                    app:layout_constraintTop_toBottomOf="@id/sp_reminder"
+                    tools:text="Blk 236 Tampines St 21" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+
+        <Button
+            android:id="@+id/btn_change"
+            style="@style/normalBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:backgroundTint="@color/coco50a"
+            android:enabled="false"
+            android:text="change"
+            app:layout_constraintBottom_toTopOf="@id/btn_save"
+            app:layout_constraintEnd_toStartOf="@id/btn_cancel"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/btn_cancel"
+            style="@style/normalBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="15dp"
+            android:onClick="@{vm::cancelBtnOnClick}"
+            android:text="Cancel Viewing"
+            app:layout_constraintBottom_toTopOf="@id/btn_save"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/btn_change" />
+
+        <Button
+            android:id="@+id/btn_save"
+            style="@style/normalBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="@color/orange"
+            android:onClick="@{vm::saveBtnOnClick}"
+            android:text="save"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

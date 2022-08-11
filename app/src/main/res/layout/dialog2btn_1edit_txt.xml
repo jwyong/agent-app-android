@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="horizontal">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/xml_roundcorner_grey3_10dp">
+
+        <!--title-->
+        <TextView
+            android:id="@+id/dialog_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Change Name" />
+
+        <!--line-->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.7dp"
+            android:background="@color/grey6"
+            app:layout_constraintTop_toBottomOf="@id/dialog_title" />
+
+        <!--label-->
+        <TextView
+            android:id="@+id/dialog_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dialog_padding_hori"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="@dimen/dialog_padding_hori"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/dialog_title"
+            tools:text="Name: " />
+
+        <!--field-->
+        <EditText
+            android:id="@+id/dialog_field"
+            style="@style/formFieldsWhite"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dialog_padding_hori"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="@dimen/dialog_padding_hori"
+            android:backgroundTint="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/dialog_label" />
+
+        <!--cancel btn-->
+        <TextView
+            android:id="@+id/negative_button"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/bg_left_round_corner_black"
+            android:gravity="center"
+            android:text="@string/cancel"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/positive_button"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/dialog_field" />
+
+        <!--ok btn-->
+        <TextView
+            android:id="@+id/positive_button"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:background="@drawable/bg_right_round_corner_black"
+            android:gravity="center"
+            android:text="@string/ok"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/negative_button"
+            app:layout_constraintTop_toTopOf="@id/negative_button" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>

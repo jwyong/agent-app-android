@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="String" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="20dp"
+        android:paddingTop="10dp"
+        android:paddingEnd="20dp"
+        android:paddingBottom="10dp">
+
+        <ImageView
+            android:id="@+id/user_profile"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_profile_def_200px"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_display_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="5dp"
+            android:text="Display Name"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:gravity="start"
+            android:layout_marginEnd="10dp"
+            app:layout_constraintStart_toEndOf="@id/user_profile"
+            app:layout_constraintTop_toTopOf="@id/user_profile"
+            app:layout_constraintEnd_toStartOf="@id/delete_btn"
+            tools:text="Display Name - agentno" />
+
+        <TextView
+            android:id="@+id/tv_company_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:text="Company Name"
+            android:textSize="12sp"
+            android:layout_marginEnd="10dp"
+            app:layout_constraintEnd_toStartOf="@id/delete_btn"
+            app:layout_constraintStart_toEndOf="@id/user_profile"
+            app:layout_constraintTop_toBottomOf="@id/tv_display_name"
+            tools:text="Company Name" />
+
+        <ImageView
+            android:id="@+id/delete_btn"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_cross_red"
+            app:layout_constraintBottom_toBottomOf="@id/user_profile"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/user_profile" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

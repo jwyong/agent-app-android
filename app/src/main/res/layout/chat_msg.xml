@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/chat_log_grp_status_msg"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:paddingStart="30dp"
+    android:paddingTop="5dp"
+    android:paddingEnd="30dp"
+    android:paddingBottom="5dp"
+    android:text="@string/update_ver"
+    android:textColor="@color/grey9"
+    android:textSize="12sp"
+    android:textStyle="italic" />

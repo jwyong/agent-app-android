@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="data"
+            type="sg.com.agentapp.setting.fragments.MyProfileFragement" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:bind="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!--profile img-->
+        <ImageView
+            android:id="@+id/profileImage"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="15dp"
+            android:onClick="@{data::profileImgOnClick}"
+            android:proPic="@{data.obsProfileImg}"
+            android:src="@drawable/ic_profile_def_200px"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!--edit btn-->
+        <TextView
+            android:id="@+id/tv_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_round_corner_5dp"
+            android:backgroundTint="@color/grey10"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:text="Edit"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@id/profileImage"
+            app:layout_constraintEnd_toEndOf="@id/profileImage"
+            app:layout_constraintStart_toStartOf="@id/profileImage" />
+
+        <!--scrollable?-->
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            app:layout_constrainedHeight="true"
+            app:layout_constraintBottom_toTopOf="@id/submit_btn"
+            app:layout_constraintTop_toBottomOf="@id/tv_edit"
+            app:layout_constraintVertical_bias="0">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!--name-->
+                <include
+                    layout="@layout/incl_profile_item"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    bind:isClickable="@{false}"
+                    bind:label="@{@string/profile_name}"
+                    bind:obsFieldText="@{data.name}" />
+
+                <!--display name-->
+                <include
+                    layout="@layout/incl_profile_item"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/my_profile_form_mar_top"
+                    bind:isClickable="@{true}"
+                    bind:label="@{@string/profile_dname}"
+                    bind:obsFieldText="@{data.obsDisplayName}"
+                    bind:onClick="@{data::displayNameOnClick}" />
+
+                <!--cea-->
+                <include
+                    layout="@layout/incl_profile_item"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/my_profile_form_mar_top"
+                    bind:isClickable="@{false}"
+                    bind:label="@{@string/profile_cea}"
+                    bind:obsFieldText="@{data.cea}" />
+
+                <!--mobile-->
+                <include
+                    layout="@layout/incl_profile_item"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/my_profile_form_mar_top"
+                    bind:isClickable="@{false}"
+                    bind:label="@{@string/profile_mobile}"
+                    bind:obsFieldText="@{data.mobile}" />
+
+                <!--email-->
+                <include
+                    layout="@layout/incl_profile_item"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/my_profile_form_mar_top"
+                    bind:isClickable="@{true}"
+                    bind:label="@{@string/profile_email}"
+                    bind:obsFieldText="@{data.obsEmail}"
+                    bind:onClick="@{data::emailOnClick}" />
+
+                <!--website-->
+                <include
+                    layout="@layout/incl_profile_item"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/my_profile_form_mar_top"
+                    bind:isClickable="@{true}"
+                    bind:label="@{@string/profile_website}"
+                    bind:obsFieldText="@{data.obsWebsite}"
+                    bind:onClick="@{data::websiteOnClick}" />
+
+                <!--agency-->
+                <include
+                    layout="@layout/incl_profile_item"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/my_profile_form_mar_top"
+                    bind:isClickable="@{false}"
+                    bind:label="@{@string/profile_agency}"
+                    bind:obsFieldText="@{data.agency}" />
+
+                <!--license-->
+                <include
+                    layout="@layout/incl_profile_item"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/my_profile_form_mar_top"
+                    bind:isClickable="@{false}"
+                    bind:label="@{@string/profile_license}"
+                    bind:obsFieldText="@{data.licenseNo}" />
+
+                <!--designation-->
+                <include
+                    layout="@layout/incl_profile_item"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/my_profile_form_mar_top"
+                    bind:isClickable="@{true}"
+                    bind:label="@{@string/profile_designation}"
+                    bind:obsFieldText="@{data.obsDesignation}"
+                    bind:onClick="@{data::designationOnClick}" />
+
+
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+        <!--submit btn-->
+        <Button
+            android:id="@+id/submit_btn"
+            style="@style/normalBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:backgroundTint="@color/coco"
+            android:text="@string/save"
+            android:onClick="@{data::submitUpdate}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/grey5"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/agent_dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_profile_def_200px"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <TextView
+                android:id="@+id/tv_agentname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Display Name"
+                android:layout_marginStart="10dp"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toEndOf="@id/agent_dp"
+                />
+
+            <TextView
+                android:id="@+id/tv_agentno"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="+65 64637803"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="@id/tv_agentname"
+                app:layout_constraintTop_toBottomOf="@id/tv_agentname"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/orange"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/tv_profile_label"/>
+
+    <TextView
+        android:id="@+id/tv_profile_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="PROFILE"
+        android:textColor="@color/white"
+        android:layout_margin="10dp"
+        app:layout_constraintStart_toStartOf="@id/view"
+        app:layout_constraintTop_toTopOf="@id/view"
+        app:layout_constraintBottom_toBottomOf="@id/view"/>
+
+    <TextView
+        android:id="@+id/tv_nameLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Name :"
+        android:textColor="@color/black"
+        android:layout_margin="10dp"
+        app:layout_constraintTop_toBottomOf="@id/view"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ang Kok Hua"
+        android:textColor="@color/black"
+        android:layout_marginStart="10dp"
+        app:layout_constraintTop_toTopOf="@id/tv_nameLabel"
+        app:layout_constraintStart_toEndOf="@id/tv_nameLabel"/>
+
+    <TextView
+        android:id="@+id/tv_cealabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CEA Reg No. :"
+        android:textColor="@color/black"
+        android:layout_margin="10dp"
+        app:layout_constraintTop_toBottomOf="@id/tv_nameLabel"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/tv_cea"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="R084676"
+        android:textColor="@color/black"
+        android:layout_marginStart="10dp"
+        app:layout_constraintStart_toEndOf="@id/tv_cealabel"
+        app:layout_constraintTop_toTopOf="@id/tv_cealabel"/>
+
+    <TextView
+        android:id="@+id/tv_emaillabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Email Address :"
+        android:layout_margin="10dp"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_cealabel"/>
+
+    <TextView
+        android:id="@+id/tv_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="aaronnang@gmail.com"
+        android:textColor="@color/black"
+        android:layout_marginStart="10dp"
+        app:layout_constraintTop_toTopOf="@id/tv_emaillabel"
+        app:layout_constraintStart_toEndOf="@id/tv_emaillabel"/>
+
+    <TextView
+        android:id="@+id/tv_websitelabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Website :"
+        android:textColor="@color/black"
+        android:layout_margin="10dp"
+        app:layout_constraintTop_toBottomOf="@id/tv_emaillabel"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/tv_website"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="www.aaronnang.com.my"
+        android:textColor="@color/black"
+        android:layout_marginStart="10dp"
+        app:layout_constraintStart_toEndOf="@id/tv_websitelabel"
+        app:layout_constraintTop_toTopOf="@id/tv_websitelabel"/>
+
+    <TextView
+        android:id="@+id/tv_designationlabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Designation :"
+        android:textColor="@color/black"
+        android:layout_margin="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_websitelabel"/>
+
+    <TextView
+        android:id="@+id/tv_designation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Marketing Director"
+        android:layout_marginStart="10dp"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toEndOf="@id/tv_designationlabel"
+        app:layout_constraintTop_toTopOf="@id/tv_designationlabel"/>
+    
+    <TextView
+        android:id="@+id/tv_agencylabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Agency :"
+        android:layout_margin="10dp"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_designationlabel"/>
+
+    <TextView
+        android:id="@+id/tv_agency"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ERA Realty Network Ptl"
+        android:layout_marginStart="10dp"
+        android:textColor="@color/black"
+        app:layout_constraintTop_toTopOf="@id/tv_agencylabel"
+        app:layout_constraintStart_toEndOf="@id/tv_agencylabel"/>
+
+    <TextView
+        android:id="@+id/tv_licenselabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="License No :"
+        android:layout_margin="10dp"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_agencylabel"/>
+
+    <TextView
+        android:id="@+id/tv_license"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="L3098772K"
+        android:layout_marginStart="10dp"
+        android:textColor="@color/black"
+        app:layout_constraintTop_toTopOf="@id/tv_licenselabel"
+        app:layout_constraintStart_toEndOf="@id/tv_licenselabel"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

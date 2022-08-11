@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/dropdownBtn"
+        android:icon="@drawable/ic_menuoption_black_200px"
+        android:title="more"
+        app:showAsAction="ifRoom">
+        <menu>
+            <item
+                android:id="@+id/menuViewUser"
+                android:title="@string/view_user" />
+            <!--<item-->
+            <!--android:id="@+id/menuMuteUser"-->
+            <!--android:title="@string/mute_user" />-->
+            <!--<item-->
+            <!--android:id="@+id/menuBlockUser"-->
+            <!--android:title="@string/block_user" />-->
+            <!--<item-->
+            <!--android:id="@+id/menuReportUser"-->
+            <!--android:title="@string/report_user" />-->
+            <item
+                android:id="@+id/menuDeleteChat"
+                android:title="@string/delete_chat" />
+        </menu>
+    </item>
+</menu>

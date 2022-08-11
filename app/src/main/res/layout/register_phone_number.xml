@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="data"
+            type="sg.com.agentapp.registration.RegisterPhoneNumberFragment" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingStart="20dp"
+        android:paddingTop="40dp"
+        android:paddingEnd="20dp"
+        android:paddingBottom="10dp">
+
+        <TextView
+            android:id="@+id/welcome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="50dp"
+            android:text="@string/reg_welcome"
+            android:textColor="@color/white"
+            android:textSize="25sp"
+            app:layout_constraintBottom_toTopOf="@id/desc"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="7dp"
+            android:text="@string/reg_welcome_desc"
+            android:textAlignment="center"
+            android:textColor="@color/grey10"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintEnd_toEndOf="@id/welcome"
+            app:layout_constraintStart_toStartOf="@id/welcome"
+            app:layout_constraintTop_toBottomOf="@id/welcome" />
+
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_logo"
+            android:tint="@color/grey9"
+            app:layout_constrainedHeight="true"
+            app:layout_constraintBottom_toTopOf="@id/title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/desc"
+            app:layout_constraintVertical_bias="0.4"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/reg_phone_label"
+            app:layout_constraintBottom_toTopOf="@id/edttxt_mobile_no"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/logo"
+            />
+
+        <EditText
+            android:id="@+id/edttxt_mobile_no"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="50dp"
+            android:background="@drawable/xml_bg_white_5dp"
+            android:backgroundTint="@color/grey3"
+            android:hint="@string/reg_phone"
+            android:inputType="phone"
+            android:padding="8dp"
+            android:text="+65"
+            app:layout_constraintBottom_toTopOf="@id/send_btn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title" />
+
+        <TextView
+            android:id="@+id/send_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/xml_bg_light_grey_5dp"
+            android:backgroundTint="@{data.isBtnEnabled ? @color/orange : @color/grey5}"
+            android:enabled="@{data.isBtnEnabled ? true : false}"
+            android:onClick="@{data::sendOTPBtn}"
+            android:padding="10dp"
+            android:text="@string/reg_otp_btn"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toTopOf="@id/tv_contact_us"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edttxt_mobile_no" />
+
+        <!--error msg invalid number-->
+        <TextView
+            android:id="@+id/tv_invalid_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/otp_phone_invalid"
+            android:textColor="@color/red"
+            android:visibility="@{data.showErrorMsg == 1 ? View.VISIBLE : View.GONE}"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintEnd_toEndOf="@id/edttxt_mobile_no"
+            app:layout_constraintStart_toStartOf="@id/edttxt_mobile_no"
+            app:layout_constraintTop_toBottomOf="@id/send_btn"
+            tools:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tv_agent_not_found"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/otp_phone_not_reg"
+            android:textColor="@color/red"
+            android:textColorLink="@color/primaryBlue1"
+            android:visibility="@{data.showErrorMsg == 2 ? View.VISIBLE : View.GONE}"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintBottom_toTopOf="@id/tv_terms"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/send_btn"
+            tools:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tv_contact_us"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:text="@string/reg_contact_btn"
+            android:textColorLink="@color/primaryBlue1"
+            android:visibility="@{data.showContactUs? View.VISIBLE : View.INVISIBLE}"
+            app:layout_constraintBottom_toTopOf="@id/tv_terms"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/send_btn" />
+
+        <TextView
+            android:id="@+id/tv_terms"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/reg_terms"
+            android:textAlignment="textStart"
+            android:textColorLink="@color/mapbox_blue"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

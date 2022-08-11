@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tv_default"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/orange"
+        android:padding="3dp"
+        android:text="Default Appointment Reminder"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <RadioGroup
+        android:id="@+id/radio_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/tv_default">
+
+        <RadioButton
+            android:id="@+id/radio_ontime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/orange"
+            android:onClick="onClickRadio"
+            android:text="On time of appointment"
+            android:textSize="16sp" />
+
+        <RadioButton
+            android:id="@+id/radio_5min"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/orange"
+            android:onClick="onClickRadio"
+            android:text="5 minutes before"
+            android:textSize="16sp" />
+
+        <RadioButton
+            android:id="@+id/radio_15min"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/orange"
+            android:checked="true"
+            android:onClick="onClickRadio"
+            android:text="15 minutes before"
+            android:textSize="16sp" />
+
+        <RadioButton
+            android:id="@+id/radio_30min"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/orange"
+            android:onClick="onClickRadio"
+            android:text="30 minutes before"
+            android:textSize="16sp" />
+
+        <RadioButton
+            android:id="@+id/radio_1hour"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/orange"
+            android:onClick="onClickRadio"
+            android:text="1 hour before"
+            android:textSize="16sp" />
+
+        <RadioButton
+            android:id="@+id/radio_2hour"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/orange"
+            android:onClick="onClickRadio"
+            android:text="2 hours before"
+            android:textSize="16sp" />
+
+        <RadioButton
+            android:id="@+id/radio_1day"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/orange"
+            android:onClick="onClickRadio"
+            android:text="1 day before"
+            android:textSize="16sp" />
+
+        <RadioButton
+            android:id="@+id/radio_2day"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/orange"
+            android:onClick="onClickRadio"
+            android:text="2 days before"
+            android:textSize="16sp" />
+
+        <RadioButton
+            android:id="@+id/radio_1week"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/orange"
+            android:onClick="onClickRadio"
+            android:text="1 week before"
+            android:textSize="16sp" />
+
+        <RadioButton
+            android:id="@+id/radio_none"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/orange"
+            android:onClick="onClickRadio"
+            android:text="None"
+            android:textSize="16sp" />
+    </RadioGroup>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

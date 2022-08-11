@@ -1,0 +1,159 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+<head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+    <title>DebugGhost</title>
+
+    <!-- Bootstrap -->
+    <link crossorigin="anonymous"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          rel="stylesheet">
+    <!-- Bootstrap theme -->
+    <link crossorigin="anonymous"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+          rel="stylesheet">
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script crossorigin="anonymous"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- pretty print java code -->
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+
+    <script>
+        function postSharedPrefs(prefsFile, inputFieldName) {
+            var ghostFieldName = prefsFile + "_debugghostseperator_" + inputFieldName;
+            var form = document.getElementById("form");
+
+            var prefs = document.getElementById("prefs");
+            var field = document.getElementById("field");
+            var fieldValue = document.getElementById("fieldValue");
+            var fieldType = document.getElementById("fieldType");
+
+            var inputField = document.getElementById(ghostFieldName);
+            var inputFieldType = document.getElementById(ghostFieldName + "_TYPE");
+
+            var typeValue = inputFieldType.value;
+
+            prefs.setAttribute("value", prefsFile);
+            fieldType.setAttribute("value", typeValue);
+            field.setAttribute("value", ghostFieldName);
+
+            if (typeValue == 'Boolean') {
+                fieldValue.setAttribute("value", inputField.checked);
+            } else {
+                fieldValue.setAttribute("value", inputField.value);
+            }
+
+            form.setAttribute("action", "/commands/internal_ghost_shared_prefs_command");
+            form.submit();
+        }
+
+
+    </script>
+
+    <style>
+        body {
+          font-family: Helvetica, Arial, Sans-Serif;
+        }
+        .container {
+            margin-left: 5px;
+        }
+        .col-sm-3, .col-sm-4, .col-sm-9 {
+            padding-right: 5px;
+            padding-left: 5px;
+        }
+        .navbar {
+            margin-bottom: 10px;
+        }
+        .container .navbar-header {
+            margin-right: 15px;
+        }
+        .alert {
+            margin-bottom: 10px;
+            margin-left: 5px;
+            margin-right: 5px;
+        }
+        .code {
+            font-family: "Courier New", Courier, monospace;
+        }
+        .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+            vertical-align: middle;
+        }
+
+
+    </style>
+</head>
+<body>
+
+<img alt="DebugGhost Logo" src="/img/ic_ghost.png"
+     style="float: left; padding-right: 20px; padding-left: 10px;"/>
+<h2 style="padding-top: 20px; margin-top: 0px;">DebugGhost</h2>
+<div style="clear: both;"></div>
+
+<nav class="navbar navbar-default" style="margin-top: 5px;">
+    <div class="container">
+        <div class="navbar-header">
+            <button class="navbar-toggle collapsed" data-target=".navbar-collapse"
+                    data-toggle="collapse" type="button">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <img height="48" src="/img/project_application_icon.png" width="48"/>
+            <span class="navbar-brand" href="/">App: {{PROJECT_NAME}}</span>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="/">Database</a></li>
+                <li class="active"><a href="/prefs">Shared Preferences</a></li>
+                <li><a href="/device">Device Info</a></li>
+                <li><a href="/commands">Commands</a></li>
+                <li><a href="https://github.com/sanidgmbh/debugghost/wiki" target="_blank">Help</a>
+                </li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
+
+<form action="" id="form" method="post">
+    <input id="prefs" name="prefs" type="hidden" value="prefsFile"/>
+    <input id="field" name="field" type="hidden" value="fieldName"/>
+    <input id="fieldValue" name="fieldValue" type="hidden" value="fieldValue"/>
+    <input id="fieldType" name="fieldType" type="hidden" value="fieldType"/>
+    <input id="returnPath" name="returnPath" type="hidden" value="prefs"/>
+</form>
+
+<div class="col-sm-2">
+    <div class="panel panel-info" style="margin-left: 5px; margin-right: 5px;">
+        <div class="panel-heading">
+            <h3 class="panel-title">Infos on SharedPreferences</h3>
+        </div>
+        <div class="panel-body" style="overflow: auto;">
+            <b>Using numbers (Float, Long, Integer):</b>
+            <br/>
+            If you type in a wrong, non numerical value or a float value for Long or Integer, saving
+            the value will be ignored. You will only see an error message in the LogCat.
+            <br/><br/>
+            <b>Using StringSet (HashSet):</b>
+            <br/>
+            Carriage return means: new entry. Be sure to have no carriage return at the end of the
+            textarea, otherwise you will have an empty String entry in your set.
+            <br/><br/>
+            <b>Float:</b>
+            <br/>
+            Float accepts dot (.) or comma (,). <i>3.3</i> is the same as <i>3,3</i>
+        </div>
+    </div>
+</div>
+
+<div class="col-sm-5">
+    {{SHARED_PREFS_LIST}}
+</div>
+
+</body>
+</html>

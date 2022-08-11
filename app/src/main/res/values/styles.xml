@@ -1,0 +1,170 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppThemeNoActionBar" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/primaryDark2</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:statusBarColor">@color/primaryStatusBar</item>
+    </style>
+
+    <!-- custom back arrow for all toolbars -->
+    <style name="toolbarBackBtnWhite" parent="Widget.AppCompat.Light.ActionBar">
+        <item name="contentInsetStart">0dp</item>
+        <item name="android:insetLeft">0dp</item>
+        <item name="android:homeAsUpIndicator">@drawable/ic_toolbar_back_button_white</item>
+    </style>
+
+    <style name="toolbarBackBtnBlack" parent="Widget.AppCompat.Light.ActionBar">
+        <item name="contentInsetStart">0dp</item>
+        <item name="android:insetLeft">0dp</item>
+        <item name="android:homeAsUpIndicator">@drawable/ic_toolbar_back_button_black</item>
+        <item name="android:actionButtonStyle">@style/toolbarDropdown</item>
+        <item name="actionButtonStyle">@style/toolbarDropdown</item>
+    </style>
+
+    <style name="Widget.AppCompat.Button.Borderless" parent="Base.Widget.AppCompat.Button.Borderless" />
+
+    <!--homeTab-->
+    <style name="homeTabTextSize" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <!--dropdown menu icon for chatroom-->
+    <style name="toolbarDropdown" parent="Widget.AppCompat.Light.ActionBar">
+        <item name="android:minWidth">30dp</item>
+        <item name="android:maxWidth">30dp</item>
+        <item name="android:width">30dp</item>
+    </style>
+
+    <!--form fields-->
+    <style name="formLabel" parent="Widget.AppCompat.Light.ActionBar">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:layout_margin">10dp</item>
+    </style>
+
+    <style name="formFieldsGrey" parent="Widget.AppCompat.Light.ActionBar">
+        <item name="android:background">@drawable/bg_round_corner_5dp</item>
+        <item name="android:backgroundTint">@color/grey3</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:layout_margin">10dp</item>
+    </style>
+
+    <style name="formFieldsWhite" parent="Widget.AppCompat.Light.ActionBar">
+        <item name="android:background">@drawable/bg_round_corner_5dp</item>
+        <item name="android:backgroundTint">@color/white</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:padding">10dp</item>
+    </style>
+
+    <!--radio btn grey-->
+    <style name="radioBtnGrey" parent="Widget.AppCompat.Light.ActionBar">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:paddingTop">@dimen/radio_btn_padding_verti</item>
+        <item name="android:paddingBottom">@dimen/radio_btn_padding_verti</item>
+        <item name="android:paddingStart">@dimen/radio_btn_padding_hori</item>
+        <item name="android:paddingEnd">@dimen/radio_btn_padding_hori</item>
+        <item name="android:background">@drawable/bg_round_corner_5dp</item>
+        <item name="android:backgroundTint">@color/grey5</item>
+    </style>
+
+    <!--normal btns-->
+    <style name="normalBtn" parent="Widget.AppCompat.Light.ActionBar">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:paddingTop">@dimen/normal_btn_padding_verti</item>
+        <item name="android:paddingBottom">@dimen/normal_btn_padding_verti</item>
+        <item name="android:paddingStart">@dimen/normal_btn_padding_hori</item>
+        <item name="android:paddingEnd">@dimen/normal_btn_padding_hori</item>
+        <item name="android:background">@drawable/bg_round_corner_5dp</item>
+        <item name="android:backgroundTint">@color/grey5</item>
+    </style>
+
+    <!--spinners-->
+    <style name="spinnerMain" parent="Widget.AppCompat.Light.ActionBar">
+        <item name="android:background">@drawable/bg_spinner</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:paddingBottom">10dp</item>
+        <item name="android:layout_margin">10dp</item>
+    </style>
+
+    <style name="spinnerPopup" parent="Widget.AppCompat.Light.ActionBar">
+        <item name="background">@drawable/bg_round_corner_5dp</item>
+        <item name="android:backgroundTint">@color/white</item>
+    </style>
+
+    <!--search results dropdown-->
+    <style name="search_dropdown" parent="Widget.AppCompat.Light.ActionBar">
+        <item name="android:background">@drawable/bg_round_border_5dp</item>
+        <item name="android:padding">10dp</item>
+    </style>
+
+    <!--chatroom: appt-->
+    <style name="view_req_title" parent="Widget.AppCompat.Light.ActionBar">
+        <item name="android:background">@drawable/bg_round_corner_5dp</item>
+        <item name="android:backgroundTint">@color/orange</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:padding">5dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
+    <style name="view_req_body" parent="Widget.AppCompat.Light.ActionBar">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:paddingBottom">3dp</item>
+        <item name="android:paddingTop">3dp</item>
+        <item name="android:paddingStart">10dp</item>
+        <item name="android:paddingEnd">10dp</item>
+    </style>
+
+    <style name="view_req_3_btn" parent="Widget.AppCompat.Light.ActionBar">
+        <item name="android:textSize">13sp</item>
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:paddingBottom">10dp</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="appt_update_date_item" parent="Widget.AppCompat.Light.ActionBar">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:maxLines">2</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="appt_update_time_item" parent="Widget.AppCompat.Light.ActionBar">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_marginTop">5dp</item>
+    </style>
+
+    <style name="appt_update_msg" parent="Widget.AppCompat.Light.ActionBar">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:paddingStart">15dp</item>
+        <item name="android:paddingEnd">15dp</item>
+    </style>
+
+
+    <!--appt details-->
+    <style name="field_label" parent="Widget.AppCompat.Light.ActionBar">
+        <item name="android:textSize">16sp</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_marginStart">5dp</item>
+        <item name="android:layout_marginEnd">5dp</item>
+    </style>
+</resources>

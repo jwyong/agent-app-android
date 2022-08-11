@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/primaryBackground">
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_logo"
+        android:tint="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/tv_app_name"
+        app:layout_constraintVertical_chainStyle="packed"/>
+
+    <TextView
+        android:id="@+id/tv_app_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/gotham_medium"
+        android:text="AGENT APP"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="@id/logo"
+        app:layout_constraintStart_toStartOf="@id/logo"
+        app:layout_constraintTop_toBottomOf="@+id/logo"
+        app:layout_constraintBottom_toTopOf="@id/tv_forgot_pw"/>
+
+   <TextView
+       android:id="@+id/tv_forgot_pw"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="Forgot Password?"
+       android:textSize="15sp"
+       android:textColor="@color/white"
+       android:layout_marginTop="25dp"
+       app:layout_constraintTop_toBottomOf="@id/tv_app_name"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintBottom_toTopOf="@id/tv_enter_code"/>
+
+    <TextView
+        android:id="@+id/tv_enter_code"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enter 6-digits OTP"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:layout_marginTop="25dp"
+        app:layout_constraintTop_toBottomOf="@id/tv_forgot_pw"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/edtxt_otp_code"/>
+
+    <EditText
+        android:id="@+id/edtxt_otp_code"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="50dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/xml_bg_white_5dp"
+        android:padding="10dp"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_enter_code"
+        app:layout_constraintBottom_toTopOf="@id/tv_no_recv"/>
+
+    <TextView
+        android:id="@+id/tv_no_recv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="OTP code has been sent to +65 8346123"
+        android:textColor="@color/white"
+        android:layout_marginTop="5dp"
+        app:layout_constraintTop_toBottomOf="@id/edtxt_otp_code"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/next_btn"/>
+
+    <TextView
+        android:id="@+id/next_btn"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/xml_bg_light_grey_5dp"
+        android:text="Next"
+        android:textAlignment="center"
+        android:textSize="15sp"
+        android:padding="10dp"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:layout_marginTop="30dp"
+        app:layout_constraintTop_toBottomOf="@id/tv_no_recv"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

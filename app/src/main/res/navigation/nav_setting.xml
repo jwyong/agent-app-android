@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_setting.xml"
+    app:startDestination="@id/settingFragment">
+
+    <fragment
+        android:id="@+id/settingFragment"
+        android:name="sg.com.agentapp.setting.SettingFragment"
+        android:label="setting_frag_item"
+        tools:layout="@layout/setting_frag_item">
+        <action
+            android:id="@+id/action_settingFragment_to_myProfileFragement2"
+            app:destination="@id/myProfileFragement" />
+        <action
+            android:id="@+id/action_settingFragment_to_blockedListMain"
+            app:destination="@id/blockedListMain" />
+        <action
+            android:id="@+id/action_settingFragment_to_contactUs"
+            app:destination="@id/contactUs" />
+        <action
+            android:id="@+id/action_settingFragment_to_popupNotification"
+            app:destination="@id/popupNotification" />
+        <action
+            android:id="@+id/action_settingFragment_to_reminder"
+            app:destination="@id/reminder" />
+    </fragment>
+    <fragment
+        android:id="@+id/myProfileFragement"
+        android:name="sg.com.agentapp.setting.fragments.MyProfileFragement"
+        android:label="myprofile"
+        tools:layout="@layout/myprofile" />
+    <fragment
+        android:id="@+id/blockedListMain"
+        android:name="sg.com.agentapp.setting.fragments.blocked_list.BlockedListMain"
+        android:label="blocked_main"
+        tools:layout="@layout/blocked_main" />
+    <fragment
+        android:id="@+id/contactUs"
+        android:name="sg.com.agentapp.setting.fragments.ContactUs"
+        android:label="contact_us"
+        tools:layout="@layout/contact_us" />
+    <fragment
+        android:id="@+id/popupNotification"
+        android:name="sg.com.agentapp.setting.fragments.PopupNotification"
+        android:label="popup_notification"
+        tools:layout="@layout/popup_notification" />
+    <fragment
+        android:id="@+id/reminder"
+        android:name="sg.com.agentapp.setting.fragments.Reminder"
+        android:label="reminder_setting"
+        tools:layout="@layout/reminder_setting" />
+</navigation>

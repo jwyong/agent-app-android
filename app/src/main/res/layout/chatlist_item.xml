@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="android.graphics.Typeface" />
+
+        <variable
+            name="data"
+            type="sg.com.agentapp.sql.joiner.ChatTabList" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_tab_selection"
+        android:paddingStart="20dp"
+        android:paddingTop="10dp"
+        android:paddingEnd="20dp"
+        android:paddingBottom="10dp">
+
+        <!--profile img-->
+        <ImageView
+            android:id="@+id/user_profile"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_profile_def_200px"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!--display name-->
+        <TextView
+            android:id="@+id/tv_display_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="5dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/roboto_bold"
+            android:maxLines="1"
+            android:paddingEnd="10dp"
+            android:text="@{data.contactRoster.CRName}"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintEnd_toStartOf="@id/noti_badge"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toEndOf="@id/user_profile"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Display Name" />
+
+        <!--noti badge-->
+        <TextView
+            android:id="@+id/noti_badge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:background="@drawable/bg_circle"
+            android:text="@{data.chatList.chatNotiBadge.toString()}"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:visibility="@{data.chatList.chatNotiBadge > 0 ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="@id/tv_display_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_display_name"
+            tools:text="1" />
+
+        <!--agency logo-->
+        <!--<ImageView-->
+        <!--    android:id="@+id/agency_logo"-->
+        <!--    android:layout_width="wrap_content"-->
+        <!--    android:layout_height="wrap_content"-->
+        <!--    android:contentDescription="Agency Logo"-->
+        <!--    android:src="@drawable/ic_select_orange"-->
+        <!--    app:layout_constraintBottom_toBottomOf="@id/tv_display_name"-->
+        <!--    app:layout_constraintEnd_toEndOf="parent"-->
+        <!--    app:layout_constraintTop_toTopOf="@id/tv_display_name" />-->
+
+        <!--last msg-->
+        <TextView
+            android:id="@+id/tv_last_msg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="5dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:paddingEnd="10dp"
+            android:text="@{data.message.msgData}"
+            android:textSize="12sp"
+            android:textStyle="@{data.chatList.chatNotiBadge > 0}"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/chat_date_time"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toEndOf="@id/user_profile"
+            app:layout_constraintTop_toBottomOf="@id/tv_display_name"
+            tools:text="Last Message" />
+
+        <!--date/time-->
+        <TextView
+            android:id="@+id/chat_date_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{data.getMsgTimeDate}"
+            android:textStyle="@{data.chatList.chatNotiBadge > 0}"
+            app:layout_constraintBottom_toBottomOf="@id/tv_last_msg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_last_msg"
+            tools:text="12:35" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

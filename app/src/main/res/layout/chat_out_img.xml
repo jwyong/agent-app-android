@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="var"
+            type="sg.com.agentapp.sql.entity.Message" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_chatroom_selection"
+        android:paddingEnd="5dp">
+
+        <!--guideline-->
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_ver_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.45" />
+
+        <!--chat bubble-->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/chat_bubble"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/chat_bubble_out"
+            android:padding="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tv_time"
+            app:layout_constraintStart_toStartOf="@id/gl_ver_1"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <!--forwarded-->
+            <TextView
+                android:id="@+id/tv_forwarded"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="3dp"
+                android:text="@string/forwarded"
+                android:textColor="@color/grey3"
+                android:textSize="12sp"
+                android:textStyle="italic"
+                android:visibility="@{var.msgForward == 0 ? View.GONE : View.VISIBLE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:visibility="visible" />
+
+            <!--image-->
+            <ImageView
+                android:id="@+id/chat_log_media_thumb"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:imgMediaInfo="@{var.MsgMediaInfo}"
+                android:imgPath="@{var.MsgMediaPath}"
+                android:scaleType="centerCrop"
+                app:layout_constraintTop_toBottomOf="@id/tv_forwarded"
+                tools:src="@drawable/default_img_400" />
+
+            <!--action btn-->
+            <ImageView
+                android:id="@+id/chat_log_retry"
+                android:layout_width="33dp"
+                android:layout_height="33dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginBottom="10dp"
+                android:onClick="@{var::upDownBtnOnClick}"
+                android:padding="5dp"
+                android:upDownBtnIsSender="@{var.IsSender}"
+                android:upDownBtnMsgOffline="@{var.MsgOffline}"
+                android:visibility="@{var.msgOffline == 1 ? View.GONE : View.VISIBLE}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:src="@drawable/ic_media_upload_gradient_100px"
+                tools:visibility="visible" />
+
+            <!--loading progress bar-->
+            <ProgressBar
+                android:id="@+id/chat_log_loading_round"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:visibility="@{var.msgOffline == -6 || var.msgOffline == -3 || var.msgOffline == 1 ? View.GONE : View.VISIBLE}"
+                app:layout_constraintBottom_toBottomOf="@+id/chat_log_retry"
+                app:layout_constraintEnd_toEndOf="@+id/chat_log_retry"
+                app:layout_constraintStart_toStartOf="@+id/chat_log_retry"
+                app:layout_constraintTop_toTopOf="@+id/chat_log_retry"
+                tools:visibility="visible" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!--time-->
+        <TextView
+            android:id="@+id/tv_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="5dp"
+            android:text="@{var.getFormattedDate(var.msgDate)}"
+            android:textSize="10sp"
+            app:layout_constraintBottom_toBottomOf="@id/chat_bubble"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/chat_bubble"
+            tools:text="2:15pm" />
+
+        <!--flag-->
+        <ImageView
+            android:id="@+id/flag_icon"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginBottom="3dp"
+            android:src="@drawable/ic_flag_200px"
+            android:tint="@color/red"
+            android:visibility="@{var.msgFlagDate > 0 ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toTopOf="@id/tv_time"
+            app:layout_constraintEnd_toEndOf="@id/tv_time"
+            app:layout_constraintStart_toStartOf="@id/tv_time"
+            tools:visibility="gone" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="data"
+            type="sg.com.agentapp.sql.entity.Appointment"/>
+
+        <variable
+            name="msg"
+            type="sg.com.agentapp.sql.entity.Message"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_chatroom_selection"
+        android:paddingEnd="5dp">
+
+        <!--guideline-->
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_ver_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.25"/>
+
+        <!--chat bubble-->
+        <LinearLayout
+            android:id="@+id/chat_bubble"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/bg_chat_appt_item"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tv_time"
+            app:layout_constraintStart_toStartOf="@id/gl_ver_1"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <!--appt title-->
+            <TextView
+                android:id="@+id/tv_title"
+                style="@style/view_req_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@{data.getApptChatBgFromStatus(msg.msgData)}"
+                android:text="@{data.apptLocationName}"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Blk 503 Bishan St 51"/>
+
+            <!--appt status-->
+            <TextView
+                android:id="@+id/tv_date"
+                style="@style/view_req_body"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:maxLines="1"
+                android:text="@{msg.msgData}"
+                app:layout_constraintBottom_toTopOf="@id/tv_loc_address"
+                app:layout_constraintTop_toBottomOf="@id/tv_title"
+                tools:text="Appointment Cancelled"/>
+
+        </LinearLayout>
+
+        <!--time-->
+        <TextView
+            android:id="@+id/tv_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="5dp"
+            android:text="@{msg.getFormattedDate(msg.msgDate)}"
+            android:textSize="10sp"
+            app:layout_constraintBottom_toBottomOf="@id/chat_bubble"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/chat_bubble"
+            tools:text="2:36pm"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

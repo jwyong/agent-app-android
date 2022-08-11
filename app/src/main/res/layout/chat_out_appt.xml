@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="msgDate"
+            type="String"/>
+
+        <variable
+            name="data"
+            type="sg.com.agentapp.sql.entity.Appointment"/>
+
+        <variable
+            name="chatroom"
+            type="sg.com.agentapp.agent_talk.chat_room.ChatRoom"/>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_chatroom_selection"
+        android:paddingEnd="5dp">
+
+        <!--guideline-->
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_ver_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.15"/>
+
+        <!--chat bubble-->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/chat_bubble"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/bg_chat_appt_item"
+            android:onClick="@{(v) -> chatroom.apptIvClickToApptDetails(v, data.apptId, data.apptStatus, data.apptExpiring)}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tv_time"
+            app:layout_constraintStart_toStartOf="@id/gl_ver_1"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <!--appt title-->
+            <TextView
+                android:id="@+id/tv_title"
+                style="@style/view_req_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@{data.getChatBgFromStatus(data.apptStatus)}"
+                android:text="@string/viewing_request"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <!--more btn-->
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:onClick="@{(v) -> chatroom.moreBtnOnclick(v, data.apptId)}"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:src="@drawable/ic_menuoption_black_200px"
+                android:tint="@color/white"
+                android:visibility="@{data.moreBtnVisibility(data.apptStatus)}"
+                app:layout_constraintBottom_toBottomOf="@id/tv_title"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tv_title"/>
+
+            <!--appt date/time-->
+            <TextView
+                android:id="@+id/tv_date"
+                style="@style/view_req_body"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:maxLines="1"
+                android:text="@{data.getDateTime()}"
+                app:layout_constraintBottom_toTopOf="@id/tv_loc_address"
+                app:layout_constraintTop_toBottomOf="@id/tv_title"
+                tools:text="27 Aug (Mon), 1pm"/>
+
+            <!--appt location-->
+            <TextView
+                android:id="@+id/tv_loc_address"
+                style="@style/view_req_body"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="2"
+                android:text="@{data.apptLocationName}"
+                app:layout_constraintBottom_toTopOf="@id/tv_type"
+                app:layout_constraintTop_toBottomOf="@id/tv_date"
+                tools:text="Blk 503 Bishan St 51"/>
+
+            <!--appt types-->
+            <TextView
+                android:id="@+id/tv_type"
+                style="@style/view_req_body"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:maxLines="1"
+                android:text="@{data.ApptAppointmentType + ` | ` + data.apptRoomType}"
+                app:layout_constraintBottom_toTopOf="@id/ll_3_btns"
+                app:layout_constraintTop_toBottomOf="@id/tv_loc_address"
+                tools:text="SALE | 5-room"/>
+
+            <!--3 action btns (change, reject, accept)-->
+            <LinearLayout
+                android:id="@+id/ll_3_btns"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="@{data.chatBtnVisiblity(data.apptStatus)}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_type"
+                tools:visibility="invisible">
+
+                <!--change-->
+                <TextView
+                    android:id="@+id/tv_change"
+                    style="@style/view_req_3_btn"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_left_round_corner_black"
+                    android:onClick="@{(v)-> chatroom.apptBtnClick(v, data.apptId)}"
+                    android:text="@string/change"
+                    android:textColor="@color/orange"/>
+
+                <!--reject-->
+                <TextView
+                    android:id="@+id/tv_reject"
+                    style="@style/view_req_3_btn"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_black_stroke"
+                    android:onClick="@{(v)-> chatroom.apptBtnClick(v, data.apptId)}"
+                    android:text="@string/reject"
+                    android:textColor="@color/red"/>
+
+                <!--accept-->
+                <TextView
+                    android:id="@+id/tv_accept"
+                    style="@style/view_req_3_btn"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_right_round_corner_black"
+                    android:onClick="@{(v)-> chatroom.apptBtnClick(v, data.apptId)}"
+                    android:text="@string/accept"
+                    android:textColor="@color/green"/>
+
+            </LinearLayout>
+
+            <!--appt status (pending/confirmed/rejected) -->
+            <TextView
+                style="@style/view_req_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@{data.getChatBgFromStatus(data.apptStatus)}"
+                android:text="@{data.getStatusTextFromStatus(data.apptStatus, true)}"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:visibility="@{data.chatStatusVisibility(data.apptStatus)}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                tools:backgroundTint="@color/orange"
+                tools:text="PENDING"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!--time-->
+        <TextView
+            android:id="@+id/tv_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="5dp"
+            android:text="@{msgDate}"
+            android:textSize="10sp"
+            app:layout_constraintBottom_toBottomOf="@id/chat_bubble"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/chat_bubble"
+            tools:text="2:36pm"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

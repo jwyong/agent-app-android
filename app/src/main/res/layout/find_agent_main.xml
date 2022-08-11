@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="vm"
+            type="sg.com.agentapp.find_agent.FindAgent" />
+    </data>
+
+    <RelativeLayout
+        android:id="@+id/gradient_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!--toolbar-->
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/white70a"
+            android:theme="@style/toolbarBackBtnBlack"
+            app:title="Find Agent"
+            app:titleTextColor="@color/black" />
+
+        <!--searchbar-->
+        <LinearLayout
+            android:id="@+id/search_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/toolbar"
+            android:layout_marginTop="7dp"
+            android:background="@color/white70a">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/ic_search_black_200px"
+                android:tint="@color/grey6" />
+
+            <EditText
+                android:id="@+id/searchView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/background_transparent"
+                android:ellipsize="end"
+                android:hint="@string/find_agent_search"
+                android:imeOptions="actionDone"
+                android:maxLines="1"
+                android:padding="10dp"
+                android:singleLine="true"
+                android:text="@={vm.obsPhoneNumber}"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <!--recyclerview-->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/search_ll"
+            android:layout_marginTop="15dp"
+            android:orientation="vertical"
+            android:visibility="@{ vm.searchNum == 0 ? View.GONE : View.VISIBLE }"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/find_agent_item"
+            tools:visibility="gone" />
+
+        <!--no search results-->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignTop="@id/recycler_view"
+            android:visibility="@{ vm.searchNum == 0 ? View.VISIBLE : View.GONE }"
+            tools:visibility="visible">
+
+            <!--no results found-->
+            <TextView
+                android:id="@+id/tv_noresult"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/no_results"
+                app:layout_constraintBottom_toTopOf="@id/tv_phone_number"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed" />
+
+            <!--phone number-->
+            <TextView
+                android:id="@+id/tv_phone_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@{vm.obsPhoneNumber}"
+                android:textColor="@color/mapbox_blue"
+                app:layout_constraintBottom_toTopOf="@id/phone_icon"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_noresult"
+                tools:text="+65 85679956" />
+
+            <ImageView
+                android:id="@+id/phone_icon"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="20dp"
+                android:onClick="@{vm::callbtn}"
+                android:src="@drawable/ic_bg_phone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/msg_icon"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_phone_number" />
+
+            <ImageView
+                android:id="@+id/msg_icon"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:onClick="@{vm::msgbtn}"
+                android:src="@drawable/ic_bg_chat"
+                app:layout_constraintEnd_toStartOf="@id/call_icon"
+                app:layout_constraintStart_toEndOf="@id/phone_icon"
+                app:layout_constraintTop_toTopOf="@id/phone_icon" />
+
+            <ImageView
+                android:id="@+id/call_icon"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:onClick="@{vm::whatsAppbtn}"
+                android:src="@drawable/ic_bg_chat_green"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/msg_icon"
+                app:layout_constraintTop_toTopOf="@id/phone_icon" />
+
+            <TextView
+                android:id="@+id/tv_contact_us"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/reg_contact_btn"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/phone_icon" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </RelativeLayout>
+</layout>

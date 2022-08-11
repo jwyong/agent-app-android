@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="data"
+            type="sg.com.agentapp.appt_tab.appt_room.AppointmentNew" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!--non-scrollable toolbar-->
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/grey9"
+            android:minHeight="50dp"
+            android:theme="@style/toolbarBackBtnWhite">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="50dp"
+                android:gravity="center"
+                android:text="@string/appt_new"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+        </androidx.appcompat.widget.Toolbar>
+
+        <!--scrollable body-->
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:focusableInTouchMode="true"
+                android:orientation="vertical">
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/gl_ver"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_begin="90dp" />
+
+                <TextView
+                    android:id="@+id/tv_location"
+                    style="@style/formLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="@{data.obsLocLabel}"
+                    app:layout_constraintBottom_toBottomOf="@id/et_location"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/et_location"
+                    tools:text="@string/appt_loc_label" />
+
+                <!--search location-->
+                <EditText
+                    android:id="@+id/et_location"
+                    style="@style/formFieldsGrey"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:editable="false"
+                    android:focusable="false"
+                    android:hint="@string/appt_loc_field"
+                    android:inputType="none"
+                    android:onClick="@{data::openOneMap}"
+                    android:text="@{data.mLocationName}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/gl_ver"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <!--search results-->
+                <androidx.recyclerview.widget.RecyclerView
+                    style="@style/search_dropdown"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:elevation="3dp"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="@id/et_location"
+                    app:layout_constraintHeight_percent="0.5"
+                    app:layout_constraintStart_toStartOf="@id/et_location"
+                    app:layout_constraintTop_toBottomOf="@id/et_location"
+                    tools:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/tv_subject"
+                    style="@style/formLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/appt_subj_label"
+                    app:layout_constraintBottom_toBottomOf="@id/et_subject"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/et_subject" />
+
+                <EditText
+                    android:id="@+id/et_subject"
+                    style="@style/formFieldsGrey"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@={data.mSubject}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/gl_ver"
+                    app:layout_constraintTop_toBottomOf="@id/et_location" />
+
+                <TextView
+                    android:id="@+id/tv_datetime"
+                    style="@style/formLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{data.obsDateLabel}"
+                    app:layout_constraintBottom_toBottomOf="@id/et_datetime"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/et_datetime"
+                    tools:text="@string/appt_date_label" />
+
+                <EditText
+                    android:id="@+id/et_datetime"
+                    style="@style/formFieldsGrey"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:editable="false"
+                    android:focusable="false"
+                    android:hint="@string/appt_date_field"
+                    android:inputType="none"
+                    android:onClick="@{data::showCalendar}"
+                    android:text="@{data.obsDateTimeLong != 0? data.formatDate(data.obsDateTimeLong): ``}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/gl_ver"
+                    app:layout_constraintTop_toBottomOf="@id/et_subject" />
+
+                <TextView
+                    android:id="@+id/tv_name"
+                    style="@style/formLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/appt_name_label"
+                    app:layout_constraintBottom_toBottomOf="@id/edttxt_name"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/edttxt_name" />
+
+                <EditText
+                    android:id="@+id/edttxt_name"
+                    style="@style/formFieldsGrey"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@={data.mName}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/gl_ver"
+                    app:layout_constraintTop_toBottomOf="@id/et_datetime" />
+
+                <TextView
+                    android:id="@+id/tv_contactno"
+                    style="@style/formLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/appt_contact_label"
+                    app:layout_constraintBottom_toBottomOf="@id/et_contactno"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/et_contactno" />
+
+                <EditText
+                    android:id="@+id/et_contactno"
+                    style="@style/formFieldsGrey"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@={data.mContactNo}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/gl_ver"
+                    app:layout_constraintTop_toBottomOf="@id/edttxt_name" />
+
+                <TextView
+                    android:id="@+id/tv_type"
+                    style="@style/formLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="21dp"
+                    android:text="@string/appt_type_label"
+                    app:layout_constraintBottom_toBottomOf="@id/type_radioGroup"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/type_radioGroup" />
+
+                <LinearLayout
+                    android:id="@+id/type_radioGroup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:paddingStart="5dp"
+                    android:paddingEnd="5dp"
+                    app:layout_constrainedWidth="true"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1"
+                    app:layout_constraintStart_toEndOf="@id/tv_type"
+                    app:layout_constraintTop_toBottomOf="@id/et_contactno">
+
+                    <include
+                        layout="@layout/incl_radio_btn"
+                        bind:btnOnClick="@{data::typeBtnsOnClick}"
+                        bind:btnText="@{@string/appt_radio_btn_sale}"
+                        bind:needCapsAll="@{true}"
+                        bind:obsSelectedBtnText="@{data.obsSelectedBtnText}" />
+
+                    <include
+                        layout="@layout/incl_radio_btn"
+                        bind:btnOnClick="@{data::typeBtnsOnClick}"
+                        bind:btnText="@{@string/appt_radio_btn_rent}"
+                        bind:needCapsAll="@{true}"
+                        bind:obsSelectedBtnText="@{data.obsSelectedBtnText}" />
+
+                    <include
+                        layout="@layout/incl_radio_btn"
+                        bind:btnOnClick="@{data::typeBtnsOnClick}"
+                        bind:btnText="@{@string/appt_radio_btn_room}"
+                        bind:needCapsAll="@{true}"
+                        bind:obsSelectedBtnText="@{data.obsSelectedBtnText}" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_room_type"
+                    style="@style/formLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/appt_room_label"
+                    app:layout_constraintBottom_toBottomOf="@id/sp_room_type"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/sp_room_type" />
+
+                <Spinner
+                    android:id="@+id/sp_room_type"
+                    style="@style/spinnerMain"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/appt_roomtype"
+                    android:onItemSelected="@{(parent,view,pos,id)-> data.onRoomTypeSpinnerSelect(parent,view,pos,id)}"
+                    android:popupTheme="@style/spinnerPopup"
+                    android:spinnerMode="dropdown"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/gl_ver"
+                    app:layout_constraintTop_toBottomOf="@id/type_radioGroup" />
+
+                <TextView
+                    android:id="@+id/tv_reminderlabel"
+                    style="@style/formLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/appt_reminder_label"
+                    app:layout_constraintBottom_toBottomOf="@id/sp_reminder"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/sp_reminder" />
+
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:id="@+id/sp_reminder"
+                    style="@style/spinnerMain"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/reminder_time"
+                    android:onItemSelected="@{(parent,view,pos,id)-> data.onReminderSpinnerSelect(parent,view,pos,id)}"
+                    android:spinnerMode="dropdown"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/gl_ver"
+                    app:layout_constraintTop_toBottomOf="@id/sp_room_type" />
+
+                <TextView
+                    android:id="@+id/tv_note"
+                    style="@style/formLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/appt_note_label"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/et_note" />
+
+                <EditText
+                    android:id="@+id/et_note"
+                    style="@style/formFieldsGrey"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="top"
+                    android:hint="@string/appt_note_field"
+                    android:inputType="textMultiLine|textCapSentences"
+                    android:maxLines="10"
+                    android:minLines="5"
+                    android:scrollbars="vertical"
+                    android:text="@={data.mNote}"
+                    app:layout_constraintBottom_toTopOf="@id/btn_cancel"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/gl_ver"
+                    app:layout_constraintTop_toBottomOf="@id/sp_reminder" />
+
+                <Button
+                    android:id="@+id/btn_cancel"
+                    style="@style/normalBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="10dp"
+                    android:backgroundTint="@color/grey7"
+                    android:onClick="@{data::cancelBtn}"
+                    android:text="CANCEL"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/btn_send"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/et_note" />
+
+                <Button
+                    android:id="@+id/btn_send"
+                    style="@style/normalBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:backgroundTint="@{data.obsIsBtnEnabled ? @color/orange : @color/grey3}"
+                    android:enabled="@{data.obsIsBtnEnabled}"
+                    android:onClick="@{data::sendRequestBtn}"
+                    android:text="SEND REQUEST"
+                    app:layout_constraintBottom_toBottomOf="@id/btn_cancel"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/btn_cancel"
+                    app:layout_constraintTop_toTopOf="@id/btn_cancel"
+                    tools:backgroundTint="@color/orange" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+    </LinearLayout>
+</layout>

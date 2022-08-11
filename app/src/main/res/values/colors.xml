@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+
+    <!--black and white-->
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+
+    <!--main-->
+    <color name="primaryBackground">#55e0c6</color>
+    <color name="primaryBackgroundAlpha">#3055e0c6</color>
+    <color name="primaryStatusBar">#4FD3BA</color>
+
+    <!--common color-->
+    <color name="primaryGrey1">#CFD8DD</color>
+    <color name="primaryGrey2">#7B8C93</color>
+
+    <!--blue COLOR-->
+    <color name="primaryBlue1">#4A9AAF</color>
+    <color name="primaryBlue2">#71f2da</color>
+
+    <!--first shades-->
+    <color name="primaryDark1">#CCFFD9</color>
+    <color name="primaryDark2">#7FDDA7</color>
+    <color name="primaryDark3">#5BD394</color>
+    <color name="primaryDark4">#7DB38B</color>
+    <color name="primaryDark5">#2b4832</color>
+
+    <!--second shades-->
+    <color name="primaryLight1">#E6FFEC</color>
+    <color name="primaryLight2">#B5F2D1</color>
+    <color name="primaryLight3">#9EE5BF</color>
+    <color name="primaryLight4">#AAD1B2</color>
+
+
+    <!--third shades-->
+    <color name="primaryPale1">#E6F2E9</color>
+    <color name="primaryPale2">#DCEFE0</color>
+
+    <!--ONLY RED COLOUR IN AgentApp-->
+    <color name="red">#FF214D</color>
+    <color name="heartred">#af2121</color>
+
+    <!--grey shades-->
+    <color name="grey1">#F4F4F4</color>
+    <color name="grey2">#F2F2F2</color>
+    <color name="grey3">#E6E6E6</color>
+    <color name="grey4">#E0E0E0</color>
+    <color name="grey5">#D9D9D9</color>
+    <color name="grey6">#D4D4D4</color>
+    <color name="grey7">#CCCCCC</color>
+    <color name="grey8">#B3B3B3</color>
+    <color name="grey9">#A4A5A5</color>
+    <color name="grey10">#7F7F7F</color>
+    <color name="grey11">#646464</color>
+    <color name="grey12">#2F4F4F</color>
+    <color name="grey13">#708090</color>
+    <color name="grey14">#6D6E70</color>
+
+
+    <!--[ALPHA] grey shades-->
+
+    <!--[ALPHA] black -->
+    <color name="black1a">#10000000</color>
+    <color name="black3a">#30000000</color>
+    <color name="black9a">#90000000</color>
+
+    <!--[ALPHA] white -->
+    <color name="white0a">#50ffffff</color>
+    <color name="white70a">#70ffffff</color>
+    <color name="white90a">#90ffffff</color>
+
+    <!--[ALPHA] coco -->
+    <color name="coco30a">#30DEB887</color>
+    <color name="coco50a">#50DEB887</color>
+    <color name="coco70a">#70DEB887</color>
+
+    <!--left out colours-->
+    <color name="orange">#ffff9800</color>
+    <color name="pale_orange">#FFCC99</color>
+    <color name="yellow">#FFFF99</color>
+    <color name="coco">#DEB887</color>
+    <color name="green">#4CAF50</color>
+</resources>

@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="data"
+            type="sg.com.agentapp.home.HomeActivity" />
+    </data>
+
+    <!--main contents-->
+    <RelativeLayout
+        android:id="@+id/gradient_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentTop="true"
+            android:theme="@style/AppThemeNoActionBar"
+            android:visibility="@{data.itemSelected > 0 ? View.INVISIBLE : View.VISIBLE}"
+            tools:background="@color/primaryBackground">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="@string/app_name"
+                    android:textColor="@color/orange"
+                    android:textSize="18sp" />
+
+                <ImageView
+                    android:id="@+id/setting"
+                    android:layout_width="35dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentEnd="true"
+                    android:onClick="@{data::settingsBtnOnclick}"
+                    android:paddingStart="5dp"
+                    android:paddingEnd="10dp"
+                    android:src="@drawable/ic_setting_200px"
+                    android:tint="@color/white" />
+
+                <ImageView
+                    android:id="@+id/search"
+                    android:layout_width="25dp"
+                    android:layout_height="match_parent"
+                    android:layout_toStartOf="@+id/setting"
+                    android:onClick="@{data::searchBtnOnclick}"
+                    android:paddingStart="5dp"
+                    android:paddingEnd="5dp"
+                    android:src="@drawable/ic_search_black_200px"
+                    android:tint="@color/white"
+                    android:visibility="gone" />
+
+                <ImageView
+                    android:id="@+id/find_agent"
+                    android:layout_width="33dp"
+                    android:layout_height="match_parent"
+                    android:layout_toStartOf="@+id/search"
+                    android:onClick="@{data::findAgentBtnOnclick}"
+                    android:paddingStart="5dp"
+                    android:paddingEnd="5dp"
+                    android:src="@drawable/ic_add_agent_200px"
+                    android:tint="@color/white" />
+            </RelativeLayout>
+        </androidx.appcompat.widget.Toolbar>
+
+        <!--long click selection menu-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:visibility="@{data.itemSelected > 0 ? View.VISIBLE : View.GONE}"
+            tools:visibility="gone">
+
+            <ImageView
+                android:id="@+id/back_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:onClick="@{data::findAgentBtnOnclick}"
+                android:paddingStart="10dp"
+                android:src="@drawable/ic_toolbar_back_button_white"
+                android:tint="@color/white" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="10dp"
+                android:layout_toEndOf="@id/back_btn"
+                android:text="@{data.itemSelected + ` Selected`}"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                tools:text="1 Selected" />
+
+            <ImageView
+                android:id="@+id/delete_btn"
+                android:layout_width="33dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:onClick="@{data::selectionDelBtn}"
+                android:paddingEnd="10dp"
+                android:src="@drawable/ic_dustbin_200px"
+                android:tint="@color/white" />
+        </RelativeLayout>
+
+        <!--home tab icons-->
+        <LinearLayout
+            android:id="@+id/linear_layout_tabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/toolbar"
+            android:orientation="vertical">
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabs"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                app:tabGravity="fill"
+                app:tabIndicatorColor="@color/orange"
+                app:tabMaxWidth="0dp"
+                app:tabMode="fixed"
+                app:tabTextColor="@color/black" />
+
+        </LinearLayout>
+
+        <!--fragment-->
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/linear_layout_tabs"
+            android:paddingTop="10dp"
+            tools:listitem="@layout/home" />
+
+    </RelativeLayout>
+</layout>

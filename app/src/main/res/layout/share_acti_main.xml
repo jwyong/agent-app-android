@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="data"
+            type="sg.com.agentapp.share_activity.ShareActi" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/xml_gradient_bg_pb">
+
+        <!--toolbar-->
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            app:title="@{data.title}"
+            app:titleTextColor="@color/white"
+            tools:title="Share To..." />
+
+        <!--find agent-->
+        <LinearLayout
+            android:id="@+id/search_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/toolbar"
+            android:background="@color/white90a">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/ic_add_agent_200px"
+                android:tint="@color/grey6" />
+
+            <TextView
+                android:id="@+id/searchView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/background_transparent"
+                android:ellipsize="end"
+                android:hint="@string/share_acti_search"
+                android:maxLines="1"
+                android:onClick="@{data::findAgentBtn}"
+                android:padding="10dp"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+
+        <!--recyclerview-->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/search_ll"
+            android:layout_marginTop="10dp"
+            android:background="@color/white"
+            android:orientation="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/chatlist_item" />
+
+        <!--no recent chat-->
+        <!--<androidx.constraintlayout.widget.ConstraintLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_alignTop="@id/recycler_view"-->
+        <!--android:background="@color/white"-->
+        <!--android:visibility="@{ vm.searchNum == 0 ? View.VISIBLE : View.GONE }"-->
+        <!--tools:visibility="visible">-->
+
+        <!--<TextView-->
+        <!--android:id="@+id/tv_noresult"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="@string/no_results"-->
+        <!--app:layout_constraintBottom_toTopOf="@id/phone_icon"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toTopOf="parent"-->
+        <!--app:layout_constraintVertical_chainStyle="packed" />-->
+
+        <!--<ImageView-->
+        <!--android:id="@+id/phone_icon"-->
+        <!--android:layout_width="40dp"-->
+        <!--android:layout_height="40dp"-->
+        <!--android:layout_marginTop="15dp"-->
+        <!--android:src="@drawable/ic_bg_phone"-->
+        <!--app:layout_constraintEnd_toStartOf="@id/msg_icon"-->
+        <!--app:layout_constraintHorizontal_chainStyle="packed"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--app:layout_constraintTop_toBottomOf="@id/tv_noresult" />-->
+
+        <!--<ImageView-->
+        <!--android:id="@+id/msg_icon"-->
+        <!--android:layout_width="40dp"-->
+        <!--android:layout_height="40dp"-->
+        <!--android:layout_marginStart="20dp"-->
+        <!--android:layout_marginEnd="20dp"-->
+        <!--android:src="@drawable/ic_bg_chat"-->
+        <!--app:layout_constraintEnd_toStartOf="@id/call_icon"-->
+        <!--app:layout_constraintStart_toEndOf="@id/phone_icon"-->
+        <!--app:layout_constraintTop_toTopOf="@id/phone_icon" />-->
+
+        <!--<ImageView-->
+        <!--android:id="@+id/call_icon"-->
+        <!--android:layout_width="40dp"-->
+        <!--android:layout_height="40dp"-->
+        <!--android:src="@drawable/ic_bg_chat_green"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--app:layout_constraintStart_toEndOf="@id/msg_icon"-->
+        <!--app:layout_constraintTop_toTopOf="@id/phone_icon" />-->
+
+        <!--<TextView-->
+        <!--android:id="@+id/tv_contact_us"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Contact Us"-->
+        <!--android:textColor="@color/black"-->
+        <!--app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toBottomOf="@id/phone_icon" />-->
+
+        <!--</androidx.constraintlayout.widget.ConstraintLayout>-->
+    </RelativeLayout>
+</layout>

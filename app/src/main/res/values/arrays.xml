@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="reminder_time">
+        <item>On time of appointment</item>
+        <item>5 minutes before</item>
+        <item>15 minutes before</item>
+        <item>30 minutes before</item>
+        <item>1 hour before</item>
+        <item>2 hours before</item>
+        <item>1 day before</item>
+        <item>2 days before</item>
+        <item>1 week before</item>
+        <item>None</item>
+    </string-array>
+
+    <string-array name="appt_roomtype">
+        <item>1-room</item>
+        <item>2-room</item>
+        <item>3-room</item>
+        <item>4-room</item>
+        <item>5-room</item>
+        <item>1-bed</item>
+        <item>2-bed</item>
+        <item>3-bed</item>
+        <item>4-bed</item>
+        <item>5-bed</item>
+    </string-array>
+
+    <integer-array name="appt_reminder_milli">
+        <item>0</item>
+        <item>300000</item>
+        <item>900000</item>
+        <item>1800000</item>
+        <item>3600000</item>
+        <item>7200000</item>
+        <item>86400000</item>
+        <item>172800000</item>
+        <item>604800000</item>
+        <item>-1</item>
+    </integer-array>
+</resources>

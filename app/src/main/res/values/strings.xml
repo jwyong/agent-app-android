@@ -1,0 +1,222 @@
+<resources>
+    <!--Global-->
+    <string name="update_ver">Coming soon…</string>
+    <string name="no_app">There is no app that can open this type of file</string>
+    <string name="ok">OK</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="next">Next</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
+    <string name="camera">Camera</string>
+    <string name="gallery">Gallery</string>
+    <string name="whatsapp_call">Whatsapp Call</string>
+    <string name="phone_call">Phone Call</string>
+    <string name="cancel_viewing">Cancel Viewing</string>
+    <string name="onresponse_success">Response from server unsuccessful, please try again later.</string>
+    <string name="onresponse_unsuccessful">Response from server unsuccessful, please try again later.</string>
+    <string name="onfailure">Connection to server failed, please try again.</string>
+    <string name="something_went_wrong">Something went wrong, please try again.</string>
+    <string name="no_stream">Not connected to server</string>
+    <string name="delete_item_confirm">Are you sure you want to delete the selected items?</string>
+
+    <!--Media-->
+    <string name="img_received">Image Received</string>
+    <string name="file_not_exist">The file no longer exists</string>
+
+    <!--Permissions-->
+    <string name="perm_write">AgentApp needs permission to write to storage</string>
+    <string name="perm_camera">AgentApp needs permission to use camera and read/write to storage</string>
+    <string name="perm_audio">AgentApp needs permission to record from your microphone and write to storage</string>
+    <string name="perm_storage_granted">Storage access granted. Please continue with previous action</string>
+    <string name="perm_gallery">AgentApp needs permission to read/write to storage</string>
+    <string name="perm_location">AgentApp needs permission to use location services</string>
+    <string name="perm_failed">Couldn\'t get required permissions, please allow in settings </string>
+    <string name="settings">Settings</string>
+    <string name="perm_call">AgentApp needs permission to read phone contact and make calls</string>
+
+    <!--Registration-->
+    <string name="reg_welcome">Welcome To AgentApp</string>
+    <string name="reg_welcome_desc">The best app to communicate with co-broke agents</string>
+    <string name="reg_phone_label">Key in your CEA registered mobile no. to activate</string>
+    <string name="reg_phone">CEA registered mobile no.</string>
+    <string name="reg_otp_btn">Send OTP</string>
+    <string name="reg_contact_btn"><a href="https://www.soapptech.com/contactus">Contact Us</a></string>
+    <string name="reg_terms">By signing up, I agree to AgentApp\'s <a href="https://www.soapptech.com/app">Terms of Services</a> and <a href="https://www.soapptech.com/process">Privacy Policy</a></string>
+
+    <string name="otp_phone_invalid">* Please key in a valid phone number</string>
+    <string name="otp_phone_not_reg">This mobile no. is not registered with CEA. Please key in the mobile no. that you registered with CEA or <a href="https://www.soapptech.com/contactus">Contact Us</a></string>
+
+    <string name="otp_sent">A One Time Password (OTP) has been sent to</string>
+    <string name="otp_6_digit">Enter the 6-digit OTP</string>
+    <string name="otp_no_receive">Did not receive OTP?</string>
+    <string name="otp_send_another">Send another OTP&#032;</string>
+    <string name="otp_send_another_u"><u>Send another OTP</u></string>
+    <string name="otp_invalid">The OTP is invalid, please click on \"Send another OTP" or try again later</string>
+
+    <string name="congrats">Congratulations!</string>
+    <string name="activated">Your account has been successfully activated</string>
+    <string name="go_ahead">Go ahead and update your profile and get connected with fellow agents now!</string>
+    <string name="update_profile">Update Profile</string>
+    <string name="or_skip">OR <u>skip</u></string>
+
+
+    <!--AgentTalk Tab-->
+    <!--toolbar-->
+    <string name="agentTalk">Agent Talk</string>
+    <string name="view_user">View User</string>
+    <string name="mute_user">Mute</string>
+    <string name="block_user">Block User</string>
+    <string name="report_user">Report User</string>
+    <string name="delete_chat">Delete Chat</string>
+    <string name="delete_chatroom_confirm">Are you sure you want to delete this chat room?</string>
+
+    <!--bottom bar-->
+    <string name="input_text">Type your message here</string>
+    <string name="send">Send</string>
+    <string name="swipe_cancel">Swipe left to cancel</string>
+    <string name="perm_audio_granted">Permissions granted, tap and hold record button to begin</string>
+
+    <!--selection-->
+    <string name="deleted_msg_confirm">Are you sure you want to delete this message for everyone?</string>
+    <string name="deleted_msg">This message has been deleted</string>
+    <string name="cant_delete_msg">You can only delete messages less than 1 hour ago</string>
+    <string name="copied_msg">Text copied to clipboard</string>
+
+    <!--chatroom-->
+    <string name="forwarded">Forwarded:</string>
+
+    <!--chatroom: appt cases-->
+    <string name="viewing_request">Viewing Request</string>
+    <string name="change">Change</string>
+    <string name="reject">Reject</string>
+    <string name="accept">Accept</string>
+
+
+    <!--Appointment Tab-->
+    <string name="appointment">Appointment</string>
+    <string name="monday">MON</string>
+    <string name="tuesday">TUE</string>
+    <string name="wednesday">WED</string>
+    <string name="thursday">THU</string>
+    <string name="friday">FRI</string>
+    <string name="saturday">SAT</string>
+    <string name="sunday">SUN</string>
+
+    <!--Appt: New Appt-->
+    <string name="appt_new">New Appointment</string>
+
+    <string name="appt_radio_btn_sale">SALE</string>
+    <string name="appt_radio_btn_rent">RENT</string>
+    <string name="appt_radio_btn_room">ROOM RENTAL</string>
+
+    <string name="appt_loc_label">Location*:</string>
+    <string name="appt_subj_label">Subject:</string>
+    <string name="appt_date_label">Date/Time*:</string>
+    <string name="appt_type_label">Type:</string>
+    <string name="appt_room_label">Room Type:</string>
+    <string name="appt_note_label">Note:</string>
+    <string name="appt_name_label">Name:</string>
+    <string name="appt_contact_label">Contact:</string>
+    <string name="appt_reminder_label">Reminder:</string>
+
+    <string name="appt_loc_field"><i>Tap to set location</i></string>
+    <string name="appt_sbj_field">Appointment Subject</string>
+    <string name="appt_date_field"><i>Tap to set date/time</i></string>
+    <string name="appt_name_field">Agent Name</string>
+    <string name="appt_phone_field">Phone Number</string>
+    <string name="appt_note_field"><i>Only you can see this field</i></string>
+
+    <!--Appt: ApptDetails-->
+    <string name="appt_det_saved">Your changes have been saved</string>
+    <string name="accept_appt_confirm">Are you sure you want to accept this appointment?</string>
+    <string name="reject_appt_confirm">Are you sure you want to reject this appointment?</string>
+    <string name="cancel_appt_confirm">Are you sure you want to cancel this appointment?</string>
+
+    <!--SettingsTab-->
+    <string name="settings_profile">My Profile</string>
+    <string name="settings_blocked">Blocked List</string>
+    <string name="settings_noti">Notifications</string>
+    <string name="settings_reminder">Reminder</string>
+    <string name="settings_invite">Invite Agent</string>
+    <string name="settings_about">About</string>
+    <string name="settings_faq">FAQ</string>
+    <string name="settings_terms">Terms &amp; Privacy Policy</string>
+    <string name="settings_contact">Contact Us</string>
+
+    <!--SettingsTab: My Profile-->
+    <string name="profile_name">Name:</string>
+    <string name="profile_dname">Display Name:</string>
+    <string name="profile_cea">CEA Reg no.:</string>
+    <string name="profile_mobile">Mobile no.:</string>
+    <string name="profile_email">Email Address:</string>
+    <string name="profile_website">Website:</string>
+    <string name="profile_agency">Agency:</string>
+    <string name="profile_license">License no.:</string>
+    <string name="profile_designation">Designation:</string>
+    <string name="profile_active_date">Active Date:</string>
+
+    <!--SettingsTab: MyProfile: editText Dialogs-->
+    <string name="et_dname_title">Update Display Name</string>
+    <string name="et_email_title">Update Email Address</string>
+    <string name="et_website_title">Update Website</string>
+    <string name="et_designation_title">Update Designation</string>
+
+    <!--SettingsTab: invite agent-->
+    <string name="invite_agent_msg">is on AgentApp, try it out now to know what you\'re missing out!
+    \n\n
+    Android: https://play.google.com/store/apps/details?id=com.soapp&amp;hl=en
+    \n\n
+        iOS: https://apps.apple.com/my/app/soapp/id1211943707
+    </string>
+
+    <!--SettingsTab: links-->
+    <string name="settings_about_url">https://www.soapptech.com/work</string>
+    <string name="settings_faq_url">https://www.soapptech.com/process</string>
+    <string name="settings_terms_url">https://www.soapptech.com/backend</string>
+    <string name="settings_contact_us">https://www.soapptech.com/contactus</string>
+
+    <!--Project Tab-->
+    <string name="project">Project</string>
+
+    <!--Flags Tab-->
+    <string name="flag">Flag</string>
+
+    <string name="country_prompt">Choose a country</string>
+
+    <string-array name="country_arrays">
+        <item>Malaysia</item>
+        <item>United States</item>
+        <item>Indonesia</item>
+        <item>France</item>
+        <item>Italy</item>
+        <item>Singapore</item>
+        <item>New Zealand</item>
+        <item>India</item>
+    </string-array>
+
+    <!--Popup Notification-->
+    <string name="nopopup">No </string>
+
+    <!--Find Agent Tab-->
+    <string name="no_results">No Results Found</string>
+    <string name="find_agent_search">Enter Agent\'s Name/ Mobile no./ CEA Reg no.</string>
+
+    <!--Share Activity-->
+    <string name="share_acti_search">Click to Find Agent</string>
+
+    <!--One Map-->
+    <string name="one_map_title">Select Location</string>
+    <string name="one_map_search">Tap to search location</string>
+
+    <!-- Appt Reminder -->
+    <string name="appt_next_reminder_title">Upcoming Appointments</string>
+    <string name="appt_now">Happening Now!</string>
+    <string name="appt_in">Appointment in</string>
+    <string name="appt_minutes">Minutes</string>
+    <string name="appt_hour">Hour</string>
+    <string name="appt_hours">Hours</string>
+    <string name="appt_days">Days</string>
+    <string name="appt_week">Week</string>
+
+</resources>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_registration.xml"
+    app:startDestination="@id/registerPhoneNumberFragment">
+    <fragment
+        android:id="@+id/registerPhoneNumberFragment"
+        android:name="sg.com.agentapp.registration.RegisterPhoneNumberFragment"
+        android:label="register_phone_number"
+        tools:layout="@layout/register_phone_number">
+        <action
+            android:id="@+id/action_registerPhoneNumberFragment_to_registerVerifyCodeFragment"
+            app:destination="@id/registerVerifyCodeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerVerifyCodeFragment"
+        android:name="sg.com.agentapp.registration.RegisterVerifyCodeFragment"
+        android:label="register_verify_code"
+        tools:layout="@layout/register_verify_code">
+        <action
+            android:id="@+id/action_registerVerifyCodeFragment_to_registerSuccessFragment"
+            app:destination="@id/registerSuccessFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerSuccessFragment"
+        android:name="sg.com.agentapp.registration.RegisterSuccessFragment"
+        android:label="register_success"
+        tools:layout="@layout/register_success" />
+</navigation>
